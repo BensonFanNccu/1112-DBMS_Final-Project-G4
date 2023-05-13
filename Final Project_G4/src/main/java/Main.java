@@ -16,6 +16,7 @@ public class Main extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DBConnector db = new DBConnector();
 		PrintWriter out = response.getWriter();
 		
 		out.println("<!DOCTYPE html>");
