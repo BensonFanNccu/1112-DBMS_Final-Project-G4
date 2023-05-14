@@ -13,10 +13,10 @@ public class Main extends HttpServlet {
 	
 	public Main() {
 	    super();
+	    
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DBConnector db = new DBConnector();
 		PrintWriter out = response.getWriter();
 		
 		out.println("<!DOCTYPE html>");
@@ -37,5 +37,6 @@ public class Main extends HttpServlet {
 		
 		out.flush();
 		out.close();
+		
 	}
 }
