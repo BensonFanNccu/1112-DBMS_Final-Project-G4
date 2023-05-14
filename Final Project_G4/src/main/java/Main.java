@@ -13,7 +13,6 @@ public class Main extends HttpServlet {
 	
 	public Main() {
 	    super();
-	    
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
