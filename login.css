@@ -24,12 +24,12 @@ h5:hover{
 color: black;
 }
 
-#container1, #container2{
+#container1, #container2,#container3{
 display:flex;/*左右並排*/
 margin: 50%;
 padding: 10px;
-width: 230px;
-height: 300px;
+width: 600px;
+height: 500px;
 background-color: white;
 border-radius: 5px;
 border-top: 10px solid #dfc334;
@@ -65,17 +65,16 @@ border: 0px;
 background: #dbb237;
 }
 
-#container2{
+#container2{/*要加container3*/
 visibility: hidden;   /*剛開始消失*/
 height: 350px;
 }
 
 
-#copyright{
+.title{
 text-align: center;
-color: #a3a2a3;
+color: #0b0b0b;
 margin: -200px 0px 0px 0px;
-font-size: 14px;
 }
 
 input{
