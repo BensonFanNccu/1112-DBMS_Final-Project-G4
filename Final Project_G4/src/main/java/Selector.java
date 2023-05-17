@@ -37,7 +37,7 @@ public class Selector {
             query += "Distance = " + distance.get(i);
         }
 
-        String weekday = "select CONVERT(WEEKDAY(CURDATE()), char)";
+        String weekday = "select CONVERT(WEEKDAY(CURDATE()), char)"; #尚未完成
 
         query += "and (Open1 like \'%" + weekday + "%\' and CURTIME() between " +
                 "CONVERT(substring(Time1, 1, 8), time) and CONVERT(substring(Time1, 10, 8), time)) " +
