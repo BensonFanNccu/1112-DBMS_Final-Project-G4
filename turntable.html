@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>選擇障礙轉盤</title>  
+        <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="turntable.css"/> 
+    </head>
+<body>
+  <div class="container">
+    <div class="wheel"></div>
+    <button class="spin-button" onclick="spinWheel()">轉動</button>
+  </div>
+</body>
+</html>
+<script>
+function spinWheel() {
+  var wheel = document.querySelector('.wheel');
+  wheel.style.animation = 'spin 3s ease-in-out';
+  
+  setTimeout(function() {
+    wheel.style.animation = '';
+    var result = getRandomResult();
+    alert('恭喜您獲得：' + result);
+  }, 3000);
+}
+
+function getRandomResult() {
+  var results = ['獎品1', '獎品2', '獎品3', '獎品4', '獎品5'];
+  var randomIndex = Math.floor(Math.random() * results.length);
+  return results[randomIndex];
+}
+
+</script>
+
