@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Selector {
     private ArrayList<String> type = new ArrayList<String>();
@@ -37,7 +38,7 @@ public class Selector {
             query += "Distance = " + distance.get(i);
         }
 
-        String weekday = "select CONVERT(WEEKDAY(CURDATE()), char)"; #尚未完成
+        String weekday = "select CONVERT(WEEKDAY(CURDATE()), char)";
 
         query += "and (Open1 like \'%" + weekday + "%\' and CURTIME() between " +
                 "CONVERT(substring(Time1, 1, 8), time) and CONVERT(substring(Time1, 10, 8), time)) " +
