@@ -30,10 +30,12 @@ public class User {
 	}
 	
 	public void Write(Restaurant r) { //time default?
+		int star = 5;
+		//star = ;
 		try {
 			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
 			
-			String query = "INSERT INTO Review VALUES(" + userID + ", " + r.getRestID() + ", `" + comments + "`);";
+			String query = "INSERT INTO Review VALUES(" + userID + ", " + r.getRestID() + ", `" + comments + "`, " + star + ");";
 			
 			Statement stat = con.createStatement();
 			stat.execute(query);
