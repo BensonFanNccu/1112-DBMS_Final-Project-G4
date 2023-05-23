@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ public class User {
 	
 	private int userID;
 	private String type;
-	private String comments;
 	private ArrayList<Integer> collection = new ArrayList<Integer>();
 	
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -29,14 +29,16 @@ public class User {
 		return type;
 	}
 	
-	public void Write(Restaurant r) { //time default?
+	public void WriteReview(Restaurant r) { //time default?
 		int star = 5;
 		//star = ;
+		
+		String comments = "";
+		//comment = ?;
 		try {
 			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
 			
 			String query = "INSERT INTO Review VALUES(" + userID + ", " + r.getRestID() + ", `" + comments + "`, " + star + ");";
-			
 			Statement stat = con.createStatement();
 			stat.execute(query);
 
@@ -44,7 +46,90 @@ public class User {
 			e.printStackTrace();
 		}
 
-	} 
+	}
+	
+	public void viewReview(Restaurant r) {
+		
+		//r = ?;
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "SELECT UserID, RestID, Time, Stars FROM Review WHERE Name = " + r.getName() + ";";
+			Statement stat = con.createStatement();
+			boolean hasResult = stat.execute(query);
+			
+			if(hasResult) {
+				ResultSet result = stat.getResultSet();
+				int count = 0;
+				while (result.next()) {
+					count++;
+				}
+				
+				if(count == 0) {
+					System.out.println("這家餐廳還沒有人評論過");
+				} else {
+					// 如何呈現??
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeComment(Restaurant r, String newComm) {
+		//r = ?;
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "UPDATE Review SET Comment = " + newComm + " WHERE UserID = " + userID + " AND RestID = " + r.getRestID() + ";";
+			Statement stat = con.createStatement();
+			boolean change = stat.execute(query);
+			
+			if(change) {
+				System.out.println("成功修改您的評論內容");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeStar(Restaurant r, String newStar) {
+		//r = ?;
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "UPDATE Review SET Stars = " + newStar + " WHERE UserID = " + userID + " AND RestID = " + r.getRestID() + ";";
+			Statement stat = con.createStatement();
+			boolean change = stat.execute(query);
+			
+			if(change) {
+				System.out.println("成功修改您的評論星級");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteReview(Restaurant r) {
+		//r = ?;
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "DELETE FROM Review WHERE RestID = " + r.getRestID() + " AND UserID = " + userID + ";";
+			Statement stat = con.createStatement();
+			boolean del = stat.execute(query);
+			
+			if(del) {
+				System.out.println("成功刪除您的評論");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public String collect(Restaurant r) { // time?
 		String result = "";
@@ -71,6 +156,55 @@ public class User {
 		}
 		
 		return result;
+	}
+	
+	public void viewCollection() {
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "SELECT RestID, Time, Weight FROM Collection WHERE UserID = " + userID + ";";
+			Statement stat = con.createStatement();
+			stat.execute(query);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteCollection(Restaurant r) {
+		//r = ?;
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "DELETE FROM Collection WHERE RestID = " + r.getRestID() + " AND UserID = " + userID + ";";
+			Statement stat = con.createStatement();
+			boolean del = stat.execute(query);
+			
+			if(del) {
+				System.out.println("成功刪除您的收藏");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeWeight(Restaurant r, double newWeight) {
+		//r = ?;
+		try {
+			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			String query = "UPDATE Collection SET Weight = " + newWeight + " WHERE UserID = " + userID + " AND RestID = " + r.getRestID() + ";";
+			Statement stat = con.createStatement();
+			boolean change = stat.execute(query);
+			
+			if(change) {
+				System.out.println("成功修改您的收藏餐廳權重");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
