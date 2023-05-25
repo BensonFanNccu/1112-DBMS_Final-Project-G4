@@ -38,7 +38,6 @@
         document.getElementById("password").value="";
   	}
   	
-  </script>
-  
+  </script> 
   </html>
   

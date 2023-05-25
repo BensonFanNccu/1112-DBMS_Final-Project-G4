@@ -31,7 +31,7 @@ public class LoginPage extends HttpServlet {
 		boolean login = true;
 		
 		if(login) {
-			request.getRequestDispatcher("/FunctionList").forward(request, response);
+			request.getRequestDispatcher("/FunctionListPage").forward(request, response);
 		}else {
 			PrintWriter out = response.getWriter();						
 			

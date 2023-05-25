@@ -26,9 +26,9 @@
             <div class="tab" ></div>
             </form>
             
-            <form>
+            <form action = '/Final_Project_G4/MyFavoritePage' method='get'>
             <img src="images/myFavorite.png" width="30" height="30">
-            <input type="button" value="我的最愛" class="submit" onclick="">
+            <input type="submit" value="我的最愛" class="submit">
             <div class="tab" ></div>
             </form>
             
