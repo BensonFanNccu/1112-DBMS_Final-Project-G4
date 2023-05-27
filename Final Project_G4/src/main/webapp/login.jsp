@@ -10,6 +10,9 @@
     </head>
   <body>
     <div class="system_name">
+      <img src="images/logo.png" width="200" height="150"  >
+    </div>
+    <div class="system_name">
       <h2>餐廳選擇器</h2>
     </div>
     <div class="login_page">
