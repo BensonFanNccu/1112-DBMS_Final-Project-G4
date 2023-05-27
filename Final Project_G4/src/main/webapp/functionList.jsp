@@ -35,6 +35,12 @@
             <div class="tab" ></div>
             </form>
             
+            <form action = '/Final_Project_G4/MyFavoritePage?${id}' method='get'>
+            <img src="images/turntable.png" style=" position: relative; top:12px;" width="30" height="30">
+            <input type="submit" value="選擇障礙專用" class="submit">
+            <div class="tab" ></div>
+            </form>
+            
             <form>
             <img src="images/food.png" style=" position: relative; top:12px;" width="30" height="30">
             <input type="button" value="飲食紀錄" class="submit" onclick="">
