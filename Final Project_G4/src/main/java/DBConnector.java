@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnector {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/dbms_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 	static final String USER = "benson";
 	static final String PASS = "123456789";
 
@@ -18,7 +18,6 @@ public class DBConnector {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("mysql Connection Success");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Can't find driver");
 			e.printStackTrace();
@@ -30,7 +29,9 @@ public class DBConnector {
 	public boolean login(String account, String password) {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			PreparedStatement stat = conn.prepareStatement("SELECT * FROM `user` WHERE Account = ? AND Password = ?");
+			PreparedStatement stat = conn.prepareStatement("SELECT * FROM `user` "
+														 + "WHERE Account = ? "
+														 + "AND Password = ?");
 			stat.setString(1, account);
 			stat.setString(2, password);
 
@@ -75,7 +76,7 @@ public class DBConnector {
 			}
 
 			// Insert values
-			stat = conn.prepareStatement("INSERT INTO user(Account, Email, Password)\r\n"
+			stat = conn.prepareStatement("INSERT INTO user(Account, Email, Password)"
 									   + "VALUES (?, ?, ?);");
 			stat.setString(1, account);
 			stat.setString(2, email);
@@ -87,5 +88,41 @@ public class DBConnector {
 			return "發生未知錯誤";
 		}
 		return "註冊成功";
+	}
+	
+	public int getUserId(String account) {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("SELECT UserID "
+														 + "FROM `user` "
+														 + "WHERE Account = ?");
+			stat.setString(1, account);
+			ResultSet rs = stat.executeQuery();
+			
+			if(rs.next()) {
+				return Integer.parseInt(rs.getString("UserID"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public boolean writeReview(Restaurant r, int userId, int star, String comment) {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Stars)"
+														 + "VALUES(?, ?, ?)");
+			stat.setString(1, String.valueOf(userId));
+			stat.setString(2, String.valueOf(r.getRestID()));
+			stat.setString(3, comment);
+			stat.executeUpdate();
+			
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

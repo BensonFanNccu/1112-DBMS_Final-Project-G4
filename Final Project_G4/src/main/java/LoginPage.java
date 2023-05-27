@@ -27,17 +27,18 @@ public class LoginPage extends HttpServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		
-//		DBConnector db = new DBConnector();
-		boolean login = true;
+		DBConnector db = new DBConnector();
+		boolean login = db.login(account, password);
 		
 		if(login) {
-			request.getRequestDispatcher("/FunctionListPage").forward(request, response);
+			int id = db.getUserId(account);
+			response.sendRedirect("/Final_Project_G4/FunctionListPage?id=" + id);
 		}else {
 			PrintWriter out = response.getWriter();						
 			
 			out.println("<script>");
 			out.println("alert('帳號或密碼錯誤，請重新登入！')");
-			out.println("window.history.back();");
+			out.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
 			out.println("</script>");
 			out.flush();
 		}				

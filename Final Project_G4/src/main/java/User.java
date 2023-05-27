@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class User {
 
 	private int userID;
+	private String account;
+	private String password;
 	private String type;
 	private ArrayList<Integer> collection = new ArrayList<Integer>();
 
@@ -16,38 +18,30 @@ public class User {
 	static final String USER = "yenrong";
 	static final String PASS = "dbmsproject";
 
-	public User(int id, String type) {
+	public User(int id) {
 		this.userID = id;
-		this.type = type;
+	}
+	
+	public User(int id, String account, String password) {
+		userID = id;
+		this.account = account;
+		this.password = password;
 	}
 
 	public int getUserID() {
 		return userID;
 	}
+	
+	public String getAccount() {
+		return account;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
 
 	public String getType() {
 		return type;
-	}
-
-	public void WriteReview(Restaurant r) {
-		int star = 5;
-		// star = ?;
-
-		String comments = "";// 要不要有文字評論comments?
-		// comment = ?;
-
-		try {
-			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			String query = "INSERT INTO Review (UserID, RestID, Stars) VALUES(" + userID + ", " + r.getRestID() + ", `"
-					+ comments + "`, " + star + ");";
-			Statement stat = con.createStatement();
-			stat.execute(query);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public void viewReview(Restaurant r) {

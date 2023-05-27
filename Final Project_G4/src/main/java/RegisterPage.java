@@ -30,20 +30,20 @@ public class RegisterPage extends HttpServlet {
 		String repassword = request.getParameter("confirm_password");
 		PrintWriter out = response.getWriter();
 		
-//		DBConnector db = new DBConnector();
-//		String res = db.register(account, email, password, repassword);
-		String res = "註冊成功";
+		DBConnector db = new DBConnector();
+		String res = db.register(account, email, password, repassword);
 		
 		if(res.equals("註冊成功")) {
 			out.println("<script>");
-			out.println("alert('註冊成功')");
-			out.println("window.history.go(-2);");
+			out.println("var yes = confirm('註冊成功，是否跳轉至登入介面？');");
+			out.println("if (yes) {window.location.replace(\"/Final_Project_G4/LoginPage\");}");
+			out.println("else {window.location.replace(\"/Final_Project_G4/RegisterPage\");}");
 			out.println("</script>");
 			out.flush();
 		}else {
 			out.println("<script>");
 			out.println("alert('" + res + "')");
-			out.println("window.history.back();");
+			out.println("window.location.replace(\"/Final_Project_G4/RegisterPage\");");
 			out.println("</script>");
 			out.flush();
 		}

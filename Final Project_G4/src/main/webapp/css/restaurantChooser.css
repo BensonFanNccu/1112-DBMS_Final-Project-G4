@@ -46,7 +46,7 @@ box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
 /*定位對齊*/
 position:relative;   
 margin: auto;
-top: 100px;
+top: 50px;
 text-align:center;
 display: flex;
 justify-content: center;   
@@ -56,7 +56,7 @@ justify-content: center;
 /*定位對齊*/
 position:relative;   
 margin: auto;
-top: 100px;
+bottom: -50px;
 text-align:center;
 
 }

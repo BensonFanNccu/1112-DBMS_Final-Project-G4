@@ -25,7 +25,7 @@
             <div class="tab"></div>
             <input type="text" id="password2" name="password" placeholder="密碼" required>
             <div class="tab"></div>
-            <input type="text" id="comfirm_password" name="comfirm_password" placeholder="確認密碼" required>
+            <input type="text" id="comfirm_password" name="confirm_password" placeholder="確認密碼" required>
             <div class="tab"></div>            
             <input type="submit" value="註冊" class="submit">
           </form>  
