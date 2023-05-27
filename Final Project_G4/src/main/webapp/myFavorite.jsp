@@ -8,32 +8,33 @@
     <link rel="stylesheet" type="text/css" href="css/restaurantChooser.css"/> 
     <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
   </head>
-
-  <div class="system_name">
-    <h2>餐廳選擇器</h2>
-  </div>
-
+  <body>
   <div class="login_page">
     <div id="container7">
       <div class="favorite"> 
         <h3>我的最愛</h3>
-        <br><img src="images/myFavorite.png" width="60" height="60" style="position: relative;top:12px;" alt="我們的logo">
-          <br><img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" alt="first">
-          <h4>這邊要放第一名的餐廳名稱</h4>
-          <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" alt="heart">
-          
-          <br><img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" alt="second">
-          <h4>這邊要放第二名的餐廳名稱</h4>
-          <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" alt="heart">
-          
-          <br><img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" alt="third">
-          <h4>這邊要放第三名的餐廳名稱</h4>
-          <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" alt="heart">
-
-          <h4>再按一下即可取消收藏</h4>
-          
-          <h5><a href = "/Final_Project_G4/FunctionListPage">返回至功能選單</a></h5>
+      <div style="position: relative;top:30px;">
+        <img src="images/firstplace.png" width="30" height="30" style="position: relative;top:12px;">
+        <span >這邊要放第一名的餐廳名稱</span>
+        <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;">
+       </div>
+      <div class="tab" ></div>
+      <div style="position: relative;top:90px;" >
+        <img src="images/secondplace.png" width="30" height="30" style="position: relative;top:12px;">
+        <span>這邊要放第二名的餐廳名稱</span>
+        <img src="images/myFavorite.png" width="30" height="30"style="position: relative;top:12px;" >
+      </div>
+        <div class="tab" ></div>
+      <div style="position: relative;top:150px;">
+        <img src="images/thirdplace.png" width="30" height="30" style="position: relative;top:12px;">
+        <span>這邊要放第三名的餐廳名稱</span>
+        <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" >
+      </div >
+        
+        <h5 style="position: relative;top:200px;" ><a href="functionchooser.html">返回主選單</a></h5>
+               
       </div>
     </div>
   </div>
+  </body>
 </html>

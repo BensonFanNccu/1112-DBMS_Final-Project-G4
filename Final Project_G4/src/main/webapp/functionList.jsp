@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <title>RestaurantChooser</title>  
-        <link rel="stylesheet" type="text/css" href="css/restaurantChooser.css"/> 
+        <link rel="stylesheet" type="text/css" href="css/restaurantChooser.css"> 
         <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
@@ -17,11 +17,9 @@
           <div class="functions">
             <h3>功能選單</h3>
             
-            <form action='/Final_Project_G4/SelectPage?${id}' method='get'>
             <img src="images/select.png" style=" position: relative; top:12px;" width="30" height="30">
-            <input type="submit" value="選擇功能" class="submit">
+            <input type="button" value="選擇功能" class="submit" onclick="toSelect()">
             <div class="tab" ></div>
-            </form>
             
             <form>
             <img src="images/search.png" style=" position: relative; top:12px;" width="30" height="30">
@@ -35,11 +33,9 @@
             <div class="tab" ></div>
             </form>
             
-            <form action = '/Final_Project_G4/MyFavoritePage?${id}' method='get'>
-            <img src="images/turntable.png" style=" position: relative; top:12px;" width="30" height="30">
-            <input type="submit" value="選擇障礙專用" class="submit">
+            <img src="images/turntable.jpg" style=" position: relative; top:12px;" width="30" height="30">
+            <input type="button" value="選擇障礙專用" class="submit" onclick="toTurnTable()">
             <div class="tab" ></div>
-            </form>
             
             <form>
             <img src="images/food.png" style=" position: relative; top:12px;" width="30" height="30">
@@ -57,6 +53,14 @@
     </div>
 </body>
 <script>
+	function toSelect(){
+		window.location.assign("/Final_Project_G4/SelectPage${user}");
+	}
+	
+	function toTurnTable(){
+		window.location.assign("/Final_Project_G4/TurnTablePage${user}");
+	}
+		
 	function signOut(){
 		window.location.replace("/Final_Project_G4/LoginPage");
 	}

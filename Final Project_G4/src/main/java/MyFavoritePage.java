@@ -16,6 +16,7 @@ public class MyFavoritePage extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		request.setAttribute("user", "?" + request.getQueryString());
 		request.getRequestDispatcher("myFavorite.jsp").forward(request, response);
 	}
 	
