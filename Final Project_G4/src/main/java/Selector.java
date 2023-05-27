@@ -18,10 +18,10 @@ public class Selector {
     static final String PASS = "dbmsproject";
 
     public void suggest() {
-        boolean delTpye = type.remove("不限");
-        boolean delBud = budget.remove("不限");
-        boolean delTime = time.remove("不限");
-        boolean delDist = distance.remove("不限");
+        type.remove("不限");
+        budget.remove("不限");
+        time.remove("不限");
+        distance.remove("不限");
 
         if (type.isEmpty()) {
             // 如何表達?
@@ -165,10 +165,10 @@ public class Selector {
     }
 
     public void partRandom() { // 轉盤要推薦幾個?
-        boolean delTpye = type.remove("不限");
-        boolean delBud = budget.remove("不限");
-        boolean delTime = time.remove("不限");
-        boolean delDist = distance.remove("不限");
+        type.remove("不限");
+        budget.remove("不限");
+        time.remove("不限");
+        distance.remove("不限");
 
         ArrayList<String> random = new ArrayList<String>();
         int count = 0;
