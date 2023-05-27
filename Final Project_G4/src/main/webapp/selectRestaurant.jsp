@@ -83,7 +83,7 @@
   </body>
   <script>
   	function toFunctionList(){
-  		window.location.replace("/Final_Project_G4/FunctionListPage?${user}");
+  		window.location.replace("/Final_Project_G4/FunctionListPage${user}");
   	}
   </script>
 </html>

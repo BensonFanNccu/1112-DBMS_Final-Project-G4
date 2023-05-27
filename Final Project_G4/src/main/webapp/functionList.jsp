@@ -27,11 +27,9 @@
             <div class="tab" ></div>
             </form>
             
-            <form action = '/Final_Project_G4/MyFavoritePage?${id}' method='get'>
             <img src="images/myFavorite.png" style=" position: relative; top:12px;" width="30" height="30">
-            <input type="submit" value="我的最愛" class="submit">
+            <input type="button" value="我的最愛" class="submit" onclick="toMyFavorite()">
             <div class="tab" ></div>
-            </form>
             
             <img src="images/turntable.jpg" style=" position: relative; top:12px;" width="30" height="30">
             <input type="button" value="選擇障礙專用" class="submit" onclick="toTurnTable()">
@@ -55,6 +53,10 @@
 <script>
 	function toSelect(){
 		window.location.assign("/Final_Project_G4/SelectPage${user}");
+	}
+	
+	function toMyFavorite(){
+		window.location.assign("/Final_Project_G4/MyFavoritePage${user}");
 	}
 	
 	function toTurnTable(){

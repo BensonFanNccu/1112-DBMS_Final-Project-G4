@@ -31,10 +31,15 @@
         <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" >
       </div >
         
-        <h5 style="position: relative;top:200px;" ><a href="functionchooser.html">返回主選單</a></h5>
+        <h5 style="position: relative;top:200px;" ><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>
                
       </div>
     </div>
   </div>
   </body>
+  <script>
+  	function toFunctionList(){
+		window.location.replace("/Final_Project_G4/FunctionListPage${user}");
+	}
+  </script>
 </html>
