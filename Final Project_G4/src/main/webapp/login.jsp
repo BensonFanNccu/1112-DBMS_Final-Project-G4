@@ -38,7 +38,7 @@
   <script>
   	function toRegister(){
   		document.getElementById("username").value="";
-        document.getElementById("password").value="";
+      document.getElementById("password").value="";
   	}
   	
   </script> 

@@ -7,17 +7,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Selector {
-    private ArrayList<String> type = new ArrayList<String>();
-    private ArrayList<String> budget = new ArrayList<String>();
-    private ArrayList<String> time = new ArrayList<String>();
-    private ArrayList<String> distance = new ArrayList<String>();
+    // private ArrayList<String> type = new ArrayList<String>();
+    // private ArrayList<String> budget = new ArrayList<String>();
+    // private ArrayList<String> time = new ArrayList<String>();
+    // private ArrayList<String> distance = new ArrayList<String>();
     private ArrayList<String> result = new ArrayList<String>();
 
     static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/dbms_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     static final String USER = "yenrong";
     static final String PASS = "dbmsproject";
 
-    public void suggest() {
+    public void suggest(ArrayList<String> type, ArrayList<String> budget, ArrayList<String> time,
+            ArrayList<String> distance) {
         type.remove("不限");
         budget.remove("不限");
         time.remove("不限");
@@ -164,7 +165,9 @@ public class Selector {
         return result;
     }
 
-    public void partRandom() { // 轉盤要推薦幾個?
+    public void partRandom(ArrayList<String> type, ArrayList<String> budget, ArrayList<String> time,
+            ArrayList<String> distance) {
+        // 轉盤要推薦幾個?
         type.remove("不限");
         budget.remove("不限");
         time.remove("不限");
