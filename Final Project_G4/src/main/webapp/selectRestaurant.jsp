@@ -45,8 +45,8 @@
         <div id="container4">
           <div class="options">
             <h3  style="position: relative;bottom:12px;">選擇介面</h3>
-            <br><b><label style="position: relative;bottom:30px;">預算</label></b>
-              <label><input type="checkbox" name="budget1" value="below 100" ><span>100元以下</span></label>
+            <br><b><label style="position: relative;bottom:30px;">預算: </label></b>
+              <label><input type="checkbox" name="budget1" value="below100" ><span>100元以下</span></label>
               <label><input type="checkbox" name="budget2" value="100-150"><span>100-150元</span></label>
               <label><input type="checkbox" name="budget3" value="150-200"> <span>150-200元</span></label>
               <label><input type="checkbox" name="budget4" value="200-250"><span>200-250元</span></label>
@@ -55,24 +55,24 @@
         
            
             <div class="tab"></div> 
-            <br><b><label style="position: relative;bottom:30px;">用餐時間</label></b>
+            <br><b><label style="position: relative;bottom:30px;">用餐時間: </label></b>
               <label><input type="checkbox" name="time1" value="below 30min"><span>30分以下</span></label>
               <label><input type="checkbox" name="time2" value="30min-1hr"><span>30分-1小時</span></label>
               <label><input type="checkbox" name="time3" value="1hr up"><span>1小時以上</span></label>
               <label><input type="checkbox" name="time4" class="checkAll"><span>不限</span></label>
              
             <div class="tab"></div> 
-            <br><b><label style="position: relative;bottom:30px;">口味</label></b>
-              <label><input type="checkbox" name="type1" value="中式餐廳"><span>中式餐廳</span></label>
-              <label><input type="checkbox" name="type2" value="韓式、日式、美式、義式餐廳"><span>韓式、日式、美式、義式餐廳</span></label>
-              <label><input type="checkbox" name="type3" value="輕食、速食"><span>輕食、速食</span></label>
+            <br><b><label style="position: relative;bottom:30px;">口味: </label></b>
+              <label><input type="checkbox" name="type1" value="type1"><span>中式餐廳</span></label>
+              <label><input type="checkbox" name="type2" value="type2"><span>韓式、日式、美式、義式餐廳</span></label>
+              <label><input type="checkbox" name="type3" value="type3"><span>輕食、速食</span></label>
               <label><input type="checkbox" name="type4" class="checkAll"><span>不限</span></label>
   
             <div class="tab"></div> 
-            <br><b><label style="position: relative;bottom:30px;">距離何處較近</label></b>
-              <label><input type="checkbox" name="dist1" value="麥側"><span>麥側</span></label>
-              <label><input type="checkbox" name="dist2" value="正門"><span>正門</span></label>
-              <label><input type="checkbox" name="dist3" value="東側門"><span>東側門</span></label>
+            <br><b><label style="position: relative;bottom:30px;">距離何處較近: </label></b>
+              <label><input type="checkbox" name="dist1" value="dist1"><span>麥側</span></label>
+              <label><input type="checkbox" name="dist2" value="dist2"><span>正門</span></label>
+              <label><input type="checkbox" name="dist3" value="dist3"><span>東側門</span></label>
               <label><input type="checkbox" name="dist4" class="checkAll"><span>不限</span></label>
                 
               <h5 style="position: relative;bottom:30px;"><a href="recommand.html">選擇完成</a></h5>    
@@ -85,5 +85,32 @@
   	function toFunctionList(){
   		window.location.replace("/Final_Project_G4/FunctionListPage${user}");
   	}
+  	
+  	function () {
+  	  ".checkAll".click(function () {
+  	    var isCheck = this.prop("checked");
+  	    this.closest(".checkAllWrap").find("input[name='sort']").prop("checked", isCheck);
+  	  });
+  	  
+  	  ".checkAllWrap input[name='sort']".click(function () {
+  	    
+  	  var el_checkAll = this.closest(".checkAllWrap").find(".checkAll");
+  	    
+  	  var checkLength = this.closest(".checkAllWrap").find("input[name='sort']:checked").length;
+  	    
+  	  var inputLength =
+  	    this.closest(".checkAllWrap").find("input[name='sort']").length;
+  	    
+  	  
+  	    if (!this.prop("checked")) {
+  	      el_checkAll.prop("checked", false);
+  	    } else {
+  	      if (checkLength == inputLength) {
+  	          el_checkAll.prop("checked", true);
+  	      }
+  	    }
+  	  });
+  	 
+  	});
   </script>
 </html>

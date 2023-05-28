@@ -23,23 +23,23 @@ public class Search {
 			Statement stat = con.createStatement();
 			boolean hasResult = stat.execute(query);
 
-			/*
-			 * if(hasResult) {
-			 * ResultSet result = stat.getResultSet();
-			 * ResultSetMetaData metaData = result.getMetaData();
-			 * int columnCount = metaData.getColumnCount();
-			 * 
-			 * for (int i = 1; i <= columnCount; i++) {
-			 * str += metaData.getColumnLabel(i);
-			 * }
-			 * 
-			 * while (result.next()) {
-			 * for (int i = 1; i <= columnCount; i++) {
-			 * str += result.getString(i);
-			 * }
-			 * }
-			 * }
-			 */
+			
+//			if(hasResult) {
+//				ResultSet result = stat.getResultSet();
+//				ResultSetMetaData metaData = result.getMetaData();
+//				int columnCount = metaData.getColumnCount();
+//			 
+//				for (int i = 1; i <= columnCount; i++) {
+//				 	str += metaData.getColumnLabel(i);
+//				}
+//			 
+//				while (result.next()) {
+//					for (int i = 1; i <= columnCount; i++) {
+//						str += result.getString(i);
+//				 	}
+//			 	}
+//			 }
+			 
 
 		} catch (SQLException e) {
 			e.printStackTrace();

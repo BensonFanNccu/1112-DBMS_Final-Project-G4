@@ -4,7 +4,7 @@
 <html>
   <head> 
     <meta charset="utf-8">
-    <title>RestaurantChooser</title>  
+    <title>Restaurant Chooser</title>  
     <link rel="stylesheet" type="text/css" href="css/restaurantChooser.css"/> 
     <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
   </head>
@@ -15,7 +15,7 @@
         <h3>我的最愛</h3>
       <div style="position: relative;top:30px;">
         <img src="images/firstplace.png" width="30" height="30" style="position: relative;top:12px;">
-        <span >這邊要放第一名的餐廳名稱</span>
+        <span>這邊要放第一名的餐廳名稱</span>
         <img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;">
        </div>
       <div class="tab" ></div>

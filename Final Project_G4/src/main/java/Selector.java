@@ -19,10 +19,6 @@ public class Selector {
 
     public void suggest(ArrayList<String> type, ArrayList<String> budget, ArrayList<String> time,
             ArrayList<String> distance) {
-        type.remove("不限");
-        budget.remove("不限");
-        time.remove("不限");
-        distance.remove("不限");
 
         if (type.isEmpty()) {
             // 如何表達?
@@ -168,10 +164,6 @@ public class Selector {
     public void partRandom(ArrayList<String> type, ArrayList<String> budget, ArrayList<String> time,
             ArrayList<String> distance) {
         // 轉盤要推薦幾個?
-        type.remove("不限");
-        budget.remove("不限");
-        time.remove("不限");
-        distance.remove("不限");
 
         ArrayList<String> random = new ArrayList<String>();
         int count = 0;
