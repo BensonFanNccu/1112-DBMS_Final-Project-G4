@@ -46,19 +46,19 @@
           <div class="options">
             <h3  style="position: relative;bottom:12px;">選擇介面</h3>
             <br><b><label style="position: relative;bottom:30px;">預算</label></b>
-              <label><input type="checkbox" name="budget1" value="50-100" ><span>100元以下</span></label>
+              <label><input type="checkbox" name="budget1" value="below 100" ><span>100元以下</span></label>
               <label><input type="checkbox" name="budget2" value="100-150"><span>100-150元</span></label>
-              <label><input type="checkbox" name="budget3" value="150-200"> <span>150-200元</span>  </label>
+              <label><input type="checkbox" name="budget3" value="150-200"> <span>150-200元</span></label>
               <label><input type="checkbox" name="budget4" value="200-250"><span>200-250元</span></label>
-              <label><input type="checkbox" name="budget5" value="250-300"><span>250元以上</span></label>
+              <label><input type="checkbox" name="budget5" value="250up"><span>250元以上</span></label>
               <label><input type="checkbox" name="budget6" class="checkAll"><span>不限</span></label>
         
            
             <div class="tab"></div> 
             <br><b><label style="position: relative;bottom:30px;">用餐時間</label></b>
-              <label><input type="checkbox" name="time1" value="10min-30min"><span>30分以下</span></label>
+              <label><input type="checkbox" name="time1" value="below 30min"><span>30分以下</span></label>
               <label><input type="checkbox" name="time2" value="30min-1hr"><span>30分-1小時</span></label>
-              <label><input type="checkbox" name="time3" value="1hr以上"><span>1小時以上</span></label>
+              <label><input type="checkbox" name="time3" value="1hr up"><span>1小時以上</span></label>
               <label><input type="checkbox" name="time4" class="checkAll"><span>不限</span></label>
              
             <div class="tab"></div> 
