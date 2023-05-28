@@ -9,22 +9,30 @@
         <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
         
     </head>
-    <div class="search_page">
-        <div id="container6">
-	        <div class="search">
-	        <!-- Search Bar 的現有程式碼：https://ithelp.ithome.com.tw/articles/10213725 -->
-	        <h3>餐廳查詢</h3>
-	        <input class="search-bar" type="text" name="search" id="search" placeholder="請輸入關鍵字">
-	        <!-- <button class="search-btn">
-	          <i class="fas fa-search"></i>
-	        </button> -->
-	    
-	        <!--這邊我不會把img和button結合；；好難-->
-	        <img src="images/search.png" width="30" height="30">
-	      
-	        </div>
-        <br>
-        <h5><a href = "/Final_Project_G4/FunctionListPage">返回至功能選單</a></h5>
-      	</div>
-     </div>
+    <body>
+    	<div class="system_name">
+  			<img src="images/logo.png" width="200" height="150"  >
+		</div>
+		<div class="search_page">
+  			<div id="container6">
+    			<div class="search">
+     				<h3>餐廳查詢</h3>
+      				<form action = '' method = 'get'>
+        				<input type="text" placeholder="輸入關鍵字"> <!--這邊我不知道要怎麼跳出推薦搜尋結果（chatGPT說要用什麼AJAX技術）-->
+        				<a href="RestaurantPage.HTML">
+        					<input type="button" value="搜尋" onclick=""><!--這里應該用submit-->
+        				</a>
+      				</form>
+      				<a href="javascript:void(0)">
+      					<input type="button" value="返回至功能選單" class="submit" onclick="toFunctionList()">
+      				</a>
+      			</div>
+			</div>
+		</div>
+    </body>
+    <script>
+  		function toFunctionList(){
+  			window.location.replace("/Final_Project_G4/FunctionListPage${user}");
+  		}
+  </script>
 </html>
