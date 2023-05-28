@@ -8,17 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SearchPage")
 public class SearchPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public SearchPage() {
-	    super();
+		super();
 	}
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("search.jsp").forward(request, response);
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		doGet(request,response);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+		String name = request.getParameter("search");
+		System.out.print(name);
 	}
 }
