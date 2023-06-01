@@ -46,15 +46,12 @@
           <div class="options">
             <h3  style="position: relative;bottom:12px;">選擇介面</h3>
             <br><b><label style="position: relative;bottom:30px;">預算: </label></b>
-            <div class="checkAllWrap">
                 <label><input type="checkbox" name="budget1" value="below100" ><span>50-100</span></label>
 				<label><input type="checkbox" name="budget2" value="100-150"><span>100-150</span></label>
 				<label><input type="checkbox" name="budget3" value="150-200"> <span>150-200</span>  </label>
 				<label><input type="checkbox" name="budget4" value="200-250"><span>200-250</span></label>
 				<label><input type="checkbox" name="budget5" value="250up"><span>250-300</span></label>
 				<label><input type="checkbox" class="checkAll"><span>不限</span></label>
-              </div>
-             </div>
         
            
             <div class="tab"></div> 
@@ -82,6 +79,7 @@
               <h5 style="position: relative;bottom:30px;"><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>                      
           </div>
         </div><!-- container3 end-->
+     </div>
   </body>
   <script>
   	function toFunctionList(){
