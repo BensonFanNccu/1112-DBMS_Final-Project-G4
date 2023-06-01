@@ -23,7 +23,6 @@ public class SearchPage extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 		String name = request.getParameter("search");
-		//System.out.print(name);
 		Search s = new Search();
 		s.searchByText(name);
 	}
