@@ -1,28 +1,50 @@
+import java.util.ArrayList;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
-public class Search {
-
-	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/dbms_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-	static final String USER = "yenrong";
-	static final String PASS = "dbmsproject";
-
-	public void searchByName(String name) {
+public class RestSearcher {
+	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	static final String USER = "root";
+	static final String PASS = "000000";
+	
+	public RestSearcher() {
+		mysql_connect();
+	}
+	
+	public void mysql_connect() {
 		try {
-			Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			DriverManager.getConnection(DB_URL, USER, PASS);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Can't find driver");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-			String query = "SELECT Name, Address, Phone, Business_hour, Closed, Vegan FROM Restaurant WHERE Name = "
-					+ name + ";";
-			// 要呈現出哪些column?
-			Statement stat = con.createStatement();
-			boolean hasResult = stat.execute(query);
-
+	public Restaurant searchByName(String name) {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("SELECT RestID, RName, Address, Phone, Business_hour, Closed, Vegan"
+														 + " FROM Restaurant"
+														 + " WHERE RName=?");
+			stat.setString(1, name);
+			ResultSet rs = stat.executeQuery();
+			
+			if(rs.next()) {
+				Restaurant r = new Restaurant(rs.getString("RestID"), rs.getString("RName"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Business_hour"), rs.getString("Closed"), rs.getString("Vegan"));
+				return r;
+			}else {
+				return null;
+			}
 			
 //			if(hasResult) {
 //				ResultSet result = stat.getResultSet();
@@ -39,11 +61,10 @@ public class Search {
 //				 	}
 //			 	}
 //			 }
-			 
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public void searchByText(String partName) {

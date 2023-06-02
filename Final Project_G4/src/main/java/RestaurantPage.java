@@ -15,9 +15,10 @@ public class RestaurantPage extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setAttribute("user", "?" + request.getQueryString());
-		request.getRequestDispatcher("RestaurantPage.jsp").forward(request, response);
+		request.getRequestDispatcher("restaurant.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
