@@ -111,11 +111,12 @@ public class DBConnector {
 	public boolean writeReview(Restaurant r, int userId, int star, String comment) {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Stars)"
-														 + "VALUES(?, ?, ?)");
+			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Comment, Stars)"
+														 + " VALUES(?, ?, ?, ?)");
 			stat.setString(1, String.valueOf(userId));
 			stat.setString(2, String.valueOf(r.getRestID()));
 			stat.setString(3, comment);
+			stat.setString(4, star);
 			stat.executeUpdate();
 			
 			return true;
