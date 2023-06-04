@@ -114,7 +114,7 @@ public class RestSelector {
     private void suggest() {
         String query = "SELECT * " +
         			   "FROM Restaurant WHERE (";
-        String weekdayQuery = "SELECT CONVERT(WEEKDAY(CURDATE()), char) as weekday";
+//        String weekdayQuery = "SELECT CONVERT(WEEKDAY(CURDATE()), char) as weekday";
 
         if (budget != null && !budget.isEmpty()) {
         	int count = 0;
@@ -127,8 +127,6 @@ public class RestSelector {
                 count++;
             }
             query += ")";
-        }else {
-        	query += "1)";
         }
 
         if (time != null && !time.isEmpty()) {
@@ -173,18 +171,18 @@ public class RestSelector {
         	query += ")";
         }
 
-        String weekday = "";
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement stat = conn.prepareStatement(weekdayQuery);
-            ResultSet rs = stat.executeQuery();
-            
-            if (rs.next()) {
-            	weekday = Integer.toString(rs.getInt("weekday"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        String weekday = "";
+//        try {
+//            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//            PreparedStatement stat = conn.prepareStatement(weekdayQuery);
+//            ResultSet rs = stat.executeQuery();
+//            
+//            if (rs.next()) {
+//            	weekday = Integer.toString(rs.getInt("weekday"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
 //        query += "AND (Open1 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
 //                 "CONVERT(substring(Time1, 1, 8), time) AND CONVERT(substring(Time1, 10, 8), time)) " +

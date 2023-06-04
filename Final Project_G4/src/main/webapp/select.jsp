@@ -48,9 +48,9 @@
             <form action = '/Final_Project_G4/SelectPage?${user}' method = 'post'><br>
             <br><b><label style="position: relative;bottom:25px;">預算: </label></b>
                 <label><input type="checkbox" id="budget1" name = "budget1" value="100元以下" onclick = "checkBudget()"><span>100元以下</span></label>
-				<label><input type="checkbox" id="budget2" name = "budget2" value="100-150" onclick = "checkBudget()"><span>100-150元</span></label>
-				<label><input type="checkbox" id="budget3" name = "budget3" value="150-200" onclick = "checkBudget()"> <span>150-200元</span>  </label>
-				<label><input type="checkbox" id="budget4" name = "budget4" value="200-250" onclick = "checkBudget()"><span>200-250元</span></label>
+				<label><input type="checkbox" id="budget2" name = "budget2" value="100-150元" onclick = "checkBudget()"><span>100-150元</span></label>
+				<label><input type="checkbox" id="budget3" name = "budget3" value="150-200元" onclick = "checkBudget()"> <span>150-200元</span>  </label>
+				<label><input type="checkbox" id="budget4" name = "budget4" value="200-250元" onclick = "checkBudget()"><span>200-250元</span></label>
 				<label><input type="checkbox" id="budget5" name = "budget5" value="250元以上" onclick = "checkBudget()"><span>250元以上</span></label>
 				<label><input type="checkbox" id="checkAllB" onclick = "selectAllBudget(this)"><span>不限</span></label>
         
