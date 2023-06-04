@@ -23,7 +23,7 @@ public class RestaurantPage extends HttpServlet {
 		request.setAttribute("RestID", attribute[1]);
 		
 		RestSearcher searcher = new RestSearcher();
-		Restaurant r = searcher.getRestaurant(attribute[1].substring(attribute[1].length() - 1));
+		Restaurant r = searcher.getRestaurant(attribute[1].split("=")[1]);
 		
 		request.setAttribute("Name", r.getName());
 		request.setAttribute("Address", r.getAddress());

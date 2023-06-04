@@ -110,32 +110,32 @@ public class DBConnector {
 		return -1;
 	}
 	
-//	public boolean writeReview(Restaurant r, int userId, int star, String comment) {
-//		try {
-//			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-//			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Comment, Stars)"
-//														 + " VALUES(?, ?, ?, ?)");
-//			stat.setString(1, String.valueOf(userId));
-//			stat.setString(2, String.valueOf(r.getRestID()));
-//			stat.setString(3, comment);
-//			stat.setString(4, star);
-//			stat.executeUpdate();
-//			
-//			return true;
-//			
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//	}
+	public boolean writeReview(String uid, String rid, String comment, String star) {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Comment, Stars)"
+														 + " VALUES(?, ?, ?, ?)");
+			stat.setString(1, uid);
+			stat.setString(2, rid);
+			stat.setString(3, comment);
+			stat.setString(4, star);
+			stat.executeUpdate();
+			
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	public boolean addFavorite(String uid, String rid) {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			PreparedStatement stat = conn.prepareStatement("Insert into Collection "
+			PreparedStatement stat = conn.prepareStatement("Insert into Collection (UserID, RestID)"
 														 + "Values(?,?)");
-			stat.setString(1, rid);
-			stat.setString(2, uid);
+			stat.setString(1, uid);
+			stat.setString(2, rid);
 			stat.executeUpdate();
 			return true;
 		} catch(Exception e) {

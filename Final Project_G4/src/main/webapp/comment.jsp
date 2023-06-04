@@ -14,7 +14,7 @@
                 height: 46px;
                 margin: 200px;
                 padding: 10px;
-                margin-top: 10px;
+                margin-top: -47px;
                 }
                 .rate:not(:checked) > input {
                     position:absolute;
@@ -59,7 +59,7 @@
     <div id="container4">
     <form action = "/Final_Project_G4/FunctionListPage?${user}&${RestID}" method = "get">
         <h3>Your Comment:</h3>
-        <textarea id="myTextbox" name="myTextbox" rows="10" cols="80"></textarea>
+        <textarea id="myTextbox" name="myTextbox" rows="10" cols="80"></textarea><br><br>
 
         <h3>Rating:</h3>
         <div class="rate">
@@ -79,10 +79,13 @@
             <label for="star1" title="text">&#9733;</label>
     
     	</div>
-    	<h5 style="position: relative;bottom:195px;"><a href="javascript:void(0)" onclick = "submit()">送出</a></h5>
-    	<h5 style="position: relative;bottom:190px;"><a href="javascript:void(0)" onclick = "toRestaurant()">返回餐廳</a></h5>
-    	<h5 style="position: relative;bottom:185px;"><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>
-    	</form>
+    	<h5 style="position: relative;bottom:170px;"><a href="javascript:void(0)" onclick = "submit()">送出</a></h5>
+    	<h5 style="position: relative;bottom:170px;"><a href="javascript:void(0)" onclick = "toRestaurant()">返回餐廳</a></h5>
+    	<h5 style="position: relative;bottom:170px;"><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>
+    </form>
+    <!-- <form action='/Final_Project_G4/CommentPage?${user}&${RestID}' method='post'>
+
+    </form> -->
   
     
 
@@ -93,6 +96,7 @@
 </body>
 <script>
 	function submit(){
+		alert('評論成功!')
 		document.location.assign("/Final_Project_G4/RestaurantPage?${user}&${RestID}");
 	}
 

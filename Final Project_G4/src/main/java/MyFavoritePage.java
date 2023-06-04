@@ -36,7 +36,11 @@ public class MyFavoritePage extends HttpServlet {
 				request.setAttribute("Rest3", "無");
 			}else {
 				request.setAttribute("Rest2", favorite.get(1));
-				request.setAttribute("Rest3", "無");
+				if(favorite.size() == 2) {
+					request.setAttribute("Rest3", "無");
+				} else {
+					request.setAttribute("Rest2", favorite.get(2));
+				}
 			}
 		}
 
@@ -53,8 +57,6 @@ public class MyFavoritePage extends HttpServlet {
 		String[] attr = request.getQueryString().split("&");
 		String uid = attr[0].split("=")[1];
 		String rid = attr[1].split("=")[1];
-		System.out.println(uid);
-		System.out.println(rid);
 		
 		
 		boolean res = db.addFavorite(uid, rid);

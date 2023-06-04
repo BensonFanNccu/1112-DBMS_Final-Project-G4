@@ -15,16 +15,17 @@
 		<div class="signup_page">
 			<div id="container2">
 				<div class="signup">            
-					<h3>註冊 Sign Up</h3>
+					<h3 style="position: relative; left: 92px">註冊 Sign Up</h3>
          
 					<form action='/Final_Project_G4/RegisterPage' method='post'>
-						<input type="text" id="account" name="account" placeholder="使用者帳號需混合4~8個英文字母和數字" required>
+						<input type="text" id="account" name="account" style="position: relative; left: 93px" placeholder="使用者帳號" required>
+						<label style="position: relative; left: 100px; font-size:14px; color:#808080">需混合4~8個英文字母和數字</label>
 						<div class="tab" ></div>
 						
-						<input type="text" id="username2" name="email" placeholder="信箱" required>
+						<input type="text" id="username2" name="email" placeholder="您的信箱" required>
 						<div class="tab"></div>
 						
-						<input type="text" id="password2" name="password" placeholder="密碼" required>
+						<input type="text" id="password2" name="password" placeholder="您的密碼" required>
 						<div class="tab"></div>
 						
 						<input type="text" id="comfirm_password" name="confirm_password" placeholder="確認密碼" required>
