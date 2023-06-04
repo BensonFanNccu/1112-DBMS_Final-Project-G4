@@ -25,41 +25,29 @@
             		<h4>餐廳介紹</h4>
             		<div class="tab"></div>
             		
-            		<img src="images/redheart.png" width="30" height="30" style="position: relative;bottom:5px;">
-            		<b style="position: relative;bottom:15px;">餐廳名稱連DB</b><!--加入收藏的按鈕-->
+            		<img src="images/myFavorite.png" width="30" height="30" style="position: relative;bottom:5px;">
+            		<b style="position: relative;bottom:15px;">${Name}</b><!--加入收藏的按鈕-->
             		<div class="tab"></div>
             		
             		<img src="images/location.png" width="30" height="30">
-            		<b style="position: relative;bottom:10px;">地址（連DB）</b>
+            		<b style="position: relative;bottom:10px;">${Address}</b>
             		<div class="tab"></div>
             		
             		<img src="images/clock.png" width="30" height="30">
-            		<b style="position: relative;bottom:10px;">用餐時間（連DB）</b>
+            		<b style="position: relative;bottom:10px;">${DiningTime}</b>
             		<div class="tab"></div>
             		
             		<img src="images/star.png" width="30" height="30">
             		<div class="div1">
-            		<h5 style="position: relative;bottom:10px;">點我到評價頁面</h5>
-            		</div>
+            			<h5 style="position: relative;bottom:10px;"><a href = "javascript:void(0)" onclick = "toComment()">點我到評價頁面</a></h5>
+            		</div><br>
             		
-            		<div class="menu">      <!--不確定可不可以用table連menu-->
-             			 <!--  <table>
-                    		<tr>
-                        		<th>品項</th>
-                        		<th>價格</th>
-                    		</tr>
-                    		<tr>
-                        		<td>資料1</td>
-                        		<td>資料2</td>
-                    		</tr>
-                    		<tr>
-                        		<td>資料4</td>
-                        		<td>資料5</td>
-                    		</tr>
-                		</table>-->
-            		</div>
+            		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>
+            		<input type="submit" value="加入我的最愛" name = "${user}" class="submit">
+            		<div class="tab"></div>
+            		</form>
             		
-            		<input type="button" value="返回至餐廳查詢" class="submit" onclick="toSearch()">
+            		<input type="button" value="返回上一頁" class="submit" onclick="window.history.back(-1);">
             		<div class="tab"></div>
             		
             		<input type="button" value="返回至功能選單" class="submit" onclick="toFunctionList()">
@@ -68,12 +56,16 @@
 		</div>
 	</body>
 	<script>
+		function toComment(){
+			document.location.assign("/Final_Project_G4/CommentPage?${user}&${RestID}");
+		}
+		
 		function toSearch(){
-			window.location.replace("/Final_Project_G4/SearchPage${user}");
+			document.location.assign("/Final_Project_G4/SearchPage?${user}");
 		}
 	
   		function toFunctionList(){
-			window.location.replace("/Final_Project_G4/FunctionListPage${user}");
+  			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
 		}
   	</script>
 </html>

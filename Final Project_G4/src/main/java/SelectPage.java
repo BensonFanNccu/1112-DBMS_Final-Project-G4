@@ -1,36 +1,54 @@
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
+
 @WebServlet("/SelectPage")
 public class SelectPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<String> type = new ArrayList<String>();
-	private ArrayList<String> budget = new ArrayList<String>();
-	private ArrayList<String> time = new ArrayList<String>();
-	private ArrayList<String> distance = new ArrayList<String>();
 
 	public SelectPage() {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		request.setAttribute("user", "?" + request.getQueryString());
-		request.getRequestDispatcher("selectRestaurant.jsp").forward(request, response);
+		request.setAttribute("user", request.getQueryString());
+		request.getRequestDispatcher("select.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		Selector s = new Selector();
-		s.fetch(request);
-		s.suggest();
+		RestSelector s = new RestSelector();
+		s.fetchRequest(request);
+		ArrayList<String> result = s.sortResult();
+		String attr = "";
+		
+		if(result == null || result.size() == 0) {
+			attr = "none";}
+		else {
+			attr = result.get(0);
+			
+			for(int i = 1; i < result.size(); i++) {
+				attr += ",";
+				attr += result.get(i);
+			}			
+		}
+		
+		PrintWriter out = response.getWriter();
+		
+		out.println("<script>");
+		out.println("window.location.replace(\"/Final_Project_G4/RecommandPage?" + request.getQueryString() + "&Result=" + attr +"\");");
+		out.println("</script>");
+		out.flush();
 		
 	}
 }

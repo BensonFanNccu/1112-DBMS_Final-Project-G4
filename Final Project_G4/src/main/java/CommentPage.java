@@ -16,7 +16,12 @@ public class CommentPage extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		request.setAttribute("user", "?" + request.getQueryString());
+		request.setCharacterEncoding("UTF-8");
+		
+		String[] attr = request.getQueryString().split("&");
+		
+		request.setAttribute("user", attr[0]);
+		request.setAttribute("RestID", attr[1]);
 		request.getRequestDispatcher("comment.jsp").forward(request, response);
 	}
 	

@@ -16,7 +16,7 @@
   			<div id="container6">
     			<div class="search">
      				<h3>餐廳查詢</h3>
-      				<form action = '/Final_Project_G4/SearchPage${user}' method = 'post'>
+      				<form action = '/Final_Project_G4/SearchPage?${user}' method = 'post'>
         				<input type="text" name = "name" placeholder="輸入關鍵字"> <!--這邊我不知道要怎麼跳出推薦搜尋結果（chatGPT說要用什麼AJAX技術）-->
         				<input type="submit" value="搜尋"><!--這里應該用submit-->
       				</form>
@@ -27,7 +27,7 @@
     </body>
     <script>
   		function toFunctionList(){
-  			window.location.replace("/Final_Project_G4/FunctionListPage${user}");
+  			window.location.replace("/Final_Project_G4/FunctionListPage?${user}");
   		}
 	</script>
 </html>

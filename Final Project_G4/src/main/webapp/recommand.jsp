@@ -19,15 +19,15 @@
       				
       				<br>
       				<img src="images/firstplace.png" width="30" height="30" style="position: relative;top:12px;">
-      				<a href="">推薦第一名</a>
+      				<a href="javascript:void(0)" onclick = 'toRest1()'>${Rest1}</a>
       				<br><br>
       				
       				<img src="images/secondplace.png" width="30" height="30" style="position: relative;top:12px;">
-      				<a href="">推薦第二名</a>
+      				<a href="javascript:void(0)" onclick = 'toRest2()'>${Rest2}</a>
       				<br><br>
       				
       				<img src="images/thirdplace.png" width="30" height="30" style="position: relative;top:12px;">
-      				<a href="">推薦第三名</a>
+      				<a href="javascript:void(0)" onclick = 'toRest3()'>${Rest3}</a>
       				<br><br>
       				
       				<input type="button" value="返回至主選單" class="submit"  style="position: relative;top:30px;" onclick="toFunctionList()">
@@ -37,7 +37,25 @@
 	</body>
 	<script>
   		function toFunctionList(){
-			window.location.replace("/Final_Project_G4/FunctionListPage${user}");
+  			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
 		}
+  		
+  		function toRest1(){
+  			if(${RestID1} != "none"){
+  				document.location.assign("/Final_Project_G4/RestaurantPage?${user}&RestID=${RestID1}");
+  			}
+  		}
+  		
+  		function toRest2(){
+  			if(${RestID2} != "none"){
+  				document.location.assign("/Final_Project_G4/RestaurantPage?${user}&RestID=${RestID2}");
+  			}
+  		}
+  		
+  		function toRest3(){
+  			if(${RestID3} != "none"){
+  				document.location.assign("/Final_Project_G4/RestaurantPage?${user}&RestID=${RestID3}");
+  			}
+  		}
 	</script>
 </html>

@@ -15,21 +15,21 @@
 					
 						<div style="position: relative;top:30px;">
 							<img src="images/firstplace.png" width="30" height="30" style="position: relative;top:12px;">
-							<span>這邊要放第一名的餐廳名稱</span>
+							<span>${Rest1}</span>
 							<img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;">
 						</div>
 						<div class="tab" ></div>
 						
 						<div style="position: relative;top:90px;" >
 							<img src="images/secondplace.png" width="30" height="30" style="position: relative;top:12px;">
-							<span>這邊要放第二名的餐廳名稱</span>
+							<span>${Rest2}</span>
 							<img src="images/myFavorite.png" width="30" height="30"style="position: relative;top:12px;" >
 							</div>
 						<div class="tab" ></div>
 						
 						<div style="position: relative;top:150px;">
 							<img src="images/thirdplace.png" width="30" height="30" style="position: relative;top:12px;">
-							<span>這邊要放第三名的餐廳名稱</span>
+							<span>${Rest3}</span>
 							<img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" >
 						</div>
 						<div class="tab" ></div>
@@ -42,7 +42,7 @@
 	</body>
 	<script>
   		function toFunctionList(){
-			window.location.replace("/Final_Project_G4/FunctionListPage${user}");
+  			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
 		}
 	</script>
 </html>
