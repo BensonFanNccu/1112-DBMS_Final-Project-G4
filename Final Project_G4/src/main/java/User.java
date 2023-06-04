@@ -201,7 +201,7 @@ public class User {
 						+ ", " + weight + ");";
 				Statement stat = con.createStatement();
 				stat.execute(query);
-				collection.add(r.getRestID());
+//				collection.add(r.getRestID());
 				result = "收藏成功!";
 			} else {
 				result = "您的收藏餐廳數已達上限";

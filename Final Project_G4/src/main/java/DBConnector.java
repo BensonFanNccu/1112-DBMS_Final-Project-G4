@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.ArrayList;
+
 public class DBConnector {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
@@ -108,22 +110,60 @@ public class DBConnector {
 		return -1;
 	}
 	
-	public boolean writeReview(Restaurant r, int userId, int star, String comment) {
+//	public boolean writeReview(Restaurant r, int userId, int star, String comment) {
+//		try {
+//			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Comment, Stars)"
+//														 + " VALUES(?, ?, ?, ?)");
+//			stat.setString(1, String.valueOf(userId));
+//			stat.setString(2, String.valueOf(r.getRestID()));
+//			stat.setString(3, comment);
+//			stat.setString(4, star);
+//			stat.executeUpdate();
+//			
+//			return true;
+//			
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//	}
+	
+	public boolean addFavorite(String uid, String rid) {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Comment, Stars)"
-														 + " VALUES(?, ?, ?, ?)");
-			stat.setString(1, String.valueOf(userId));
-			stat.setString(2, String.valueOf(r.getRestID()));
-			stat.setString(3, comment);
-			stat.setString(4, star);
+			PreparedStatement stat = conn.prepareStatement("Insert into Collection "
+														 + "Values(?,?)");
+			stat.setString(1, rid);
+			stat.setString(2, uid);
 			stat.executeUpdate();
-			
 			return true;
-			
-		}catch(SQLException e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public ArrayList<String> getFavorite(String uid){
+		ArrayList<String> res = new ArrayList<String>();
+		int count = 0;
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("SELECT r.NAME "
+														 + "FROM restaurant AS r, collection AS c "
+														 + "WHERE c.UserID = ? "
+														 + "AND c.RestID = r.RestID");
+			stat.setString(1, uid);
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next() && count < 3) {
+				res.add(rs.getString("Name"));
+				count++;
+			}
+			return res;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

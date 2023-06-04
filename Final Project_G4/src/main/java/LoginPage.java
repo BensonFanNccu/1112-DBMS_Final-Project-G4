@@ -34,7 +34,7 @@ public class LoginPage extends HttpServlet {
 			int id = db.getUserId(account);
 			response.sendRedirect("/Final_Project_G4/FunctionListPage?id=" + id);
 		}else {
-			PrintWriter out = response.getWriter();						
+			PrintWriter out = response.getWriter();		
 			
 			out.println("<script>");
 			out.println("alert('帳號或密碼錯誤，請重新登入！')");
