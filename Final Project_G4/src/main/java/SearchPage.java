@@ -41,7 +41,6 @@ public class SearchPage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 			
-			
 		}else {
 			System.out.print("N");
 		}

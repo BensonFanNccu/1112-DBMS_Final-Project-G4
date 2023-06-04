@@ -34,12 +34,14 @@ public class MyFavoritePage extends HttpServlet {
 			if(favorite.size() == 1) {
 				request.setAttribute("Rest2", "無");
 				request.setAttribute("Rest3", "無");
-			}else {
-				request.setAttribute("Rest2", favorite.get(1));
+			}else {				
 				if(favorite.size() == 2) {
+					request.setAttribute("Rest2", favorite.get(1));
 					request.setAttribute("Rest3", "無");
 				} else {
-					request.setAttribute("Rest2", favorite.get(2));
+					request.setAttribute("Rest2", favorite.get(1));
+					request.setAttribute("Rest3", favorite.get(2));
+					
 				}
 			}
 		}

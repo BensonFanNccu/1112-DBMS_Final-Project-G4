@@ -127,6 +127,8 @@ public class RestSelector {
                 count++;
             }
             query += ")";
+        }else {
+        	query += "1)";
         }
 
         if (time != null && !time.isEmpty()) {
@@ -194,6 +196,7 @@ public class RestSelector {
         try {
         	Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         	PreparedStatement stat = conn.prepareStatement(query);
+        	System.out.print(stat);
         	ResultSet rs = stat.executeQuery();
         	result = new ArrayList<Restaurant>();
         	
