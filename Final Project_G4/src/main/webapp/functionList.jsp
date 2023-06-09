@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"
+import = "java.io.PrintWriter"
+%>
 <!DOCTYPE html>
 <html>
 	<head>

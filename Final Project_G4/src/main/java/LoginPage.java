@@ -3,6 +3,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,10 @@ public class LoginPage extends HttpServlet {
 		boolean login = db.login(account, password);
 		
 		if(login) {
+			HttpSession session = request.getSession(true);
+			session.setMaxInactiveInterval(20);
+			session.setAttribute("pass","ok");
+			
 			int id = db.getUserId(account);
 			response.sendRedirect("/Final_Project_G4/FunctionListPage?id=" + id);
 		}else {

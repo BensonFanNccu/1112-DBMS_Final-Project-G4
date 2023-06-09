@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,6 +44,7 @@
   			document.getElementById("password").value = "";
       		window.location.replace("/Final_Project_G4/RegisterPage");
   		}  	
-	</script> 
+	</script>
 </html>
+
   
