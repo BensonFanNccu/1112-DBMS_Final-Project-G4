@@ -1,24 +1,27 @@
+package webPages;
+
+import controllers.DBConnector;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LoginPage")
-public class LoginPage extends HttpServlet {
+@WebServlet("/RegisterPage")
+public class RegisterPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public LoginPage() {
+	public RegisterPage() {
 	    super();
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		request.getRequestDispatcher("login.jsp").forward(request, response);				
+		request.getRequestDispatcher("register.jsp").forward(request, response);				
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -26,26 +29,27 @@ public class LoginPage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String account = request.getParameter("account");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String repassword = request.getParameter("confirm_password");
+		PrintWriter out = response.getWriter();
 		
 		DBConnector db = new DBConnector();
-		boolean login = db.login(account, password);
+		String res = db.register(account, email, password, repassword);
 		
-		if(login) {
-			HttpSession session = request.getSession(true);
-			session.setMaxInactiveInterval(20);
-			session.setAttribute("pass","ok");
-			
-			int id = db.getUserId(account);
-			response.sendRedirect("/Final_Project_G4/FunctionListPage?id=" + id);
-		}else {
-			PrintWriter out = response.getWriter();		
-			
+		if(res.equals("註冊成功")) {
 			out.println("<script>");
-			out.println("alert('帳號或密碼錯誤，請重新登入！')");
-			out.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
+			out.println("var yes = confirm('註冊成功，是否跳轉至登入介面？');");
+			out.println("if (yes) {window.location.replace(\"/Final_Project_G4/LoginPage\");}");
+			out.println("else {window.location.replace(\"/Final_Project_G4/RegisterPage\");}");
 			out.println("</script>");
 			out.flush();
-		}				
+		}else {
+			out.println("<script>");
+			out.println("alert('" + res + "')");
+			out.println("window.location.replace(\"/Final_Project_G4/RegisterPage\");");
+			out.println("</script>");
+			out.flush();
+		}
 	}
 }

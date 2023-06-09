@@ -1,3 +1,7 @@
+package webPages;
+
+import controllers.DBConnector;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 

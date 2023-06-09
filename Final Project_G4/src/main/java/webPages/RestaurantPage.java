@@ -1,3 +1,9 @@
+package webPages;
+
+import controllers.RestSearcher;
+
+import entities.Restaurant;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;

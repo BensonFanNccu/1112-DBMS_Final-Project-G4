@@ -1,3 +1,6 @@
+package controllers;
+
+import entities.Restaurant;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -196,7 +199,6 @@ public class RestSelector {
         try {
         	Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         	PreparedStatement stat = conn.prepareStatement(query);
-        	System.out.print(stat);
         	ResultSet rs = stat.executeQuery();
         	result = new ArrayList<Restaurant>();
         	
