@@ -26,19 +26,46 @@ public class VerificationPage extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-	 	HttpSession hsession = request.getSession(true);
+	 	HttpSession session = request.getSession(true);
 	 	UserManager manager = new UserManager();
 	 	
-	    String val = (String)hsession.getAttribute("email");
+	    String val = (String)session.getAttribute("email");
 	    String code = String.format("%06d", new Random().nextInt(1000000));
-	    System.out.print(code);
+	    
 	    manager.sendVerification(val, code);
 	    
+	    session.setAttribute("verificationCode", code);
 		request.getRequestDispatcher("verification.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+		
+		HttpSession session = request.getSession(true);
+		
+		String input = request.getParameter("verification");
+		String code = (String)session.getAttribute("verificationCode");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(input.equals(code)) {
+			UserManager manager = new UserManager();
+			manager.activeAccount((String)session.getAttribute("email"));
+			
+			out.println("<script>");
+			out.println("alert('驗證完成，您的帳號已啟用');");
+			out.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('驗證碼錯誤，新驗證碼已寄出，請重新驗證');");
+			out.println("window.location.replace(\"/Final_Project_G4/VerificationPage\");");
+			out.println("</script>");
+		}
+		
+		
+		
 	}
 }

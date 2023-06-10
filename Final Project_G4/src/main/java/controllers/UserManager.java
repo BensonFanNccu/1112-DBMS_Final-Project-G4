@@ -122,17 +122,29 @@ public class UserManager {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("restaurantchooserdbms@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("fbi0826@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
             message.setSubject(code + "是您的驗證碼");
             message.setText("感謝您使用餐廳選擇器。\n"
             			  + "輸入驗證碼，即通過電子信箱完成身分確認\n"
             			  + code + "是您的驗證碼");
 
             Transport.send(message);
-
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+	}
+	
+	public void activeAccount(String email) {
+		try {
+			PreparedStatement stat = conn.prepareStatement("UPDATE user "
+														 + "SET Status = ? "
+														 + "WHERE Email = ? ");
+			stat.setString(1, "Activated");
+			stat.setString(2, email);
+			stat.executeUpdate();
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	public int getUserId(String account) {
@@ -146,7 +158,7 @@ public class UserManager {
 			if(rs.next()) {
 				return Integer.parseInt(rs.getString("UserID"));
 			}
-		}catch (SQLException e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return -1;

@@ -20,6 +20,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/BENSON/git/DBMS Project/Final Project_G4/src/main/webapp/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="C:/Users/BENSON/git/DBMS Project/Final Project_G4/src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/BENSON/Downloads/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/BENSON/git/DBMS Project/Final Project_G4/src/main/webapp/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
