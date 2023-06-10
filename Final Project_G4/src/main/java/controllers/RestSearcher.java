@@ -29,12 +29,12 @@ public class RestSearcher {
 		}
 	}
 	
-	public String searchByText(String input) {
+	public String searchByName(String input) {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT Name "
 														 + "FROM `Restaurant` "
-														 + "WHERE Name LIKE ?");
+														 + "WHERE Name = ?");
 			stat.setString(1, "%" + input + "%");
 			ResultSet rs = stat.executeQuery();
 			
