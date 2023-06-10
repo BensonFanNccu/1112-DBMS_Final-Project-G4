@@ -41,6 +41,7 @@ public class SearchPage extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		
 		RestSearcher searcher = new RestSearcher();
 		
@@ -58,8 +59,13 @@ public class SearchPage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 			
-		}else {
-			System.out.print("N");
+		} else {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('很抱歉，找不到您所輸入的餐廳。')");
+			out.println("window.location.replace(\"/Final_Project_G4/SearchPage\");");
+			out.println("</script>");
+			out.flush();
 		}
 	}
 }
