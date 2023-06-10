@@ -35,7 +35,7 @@ public class RestSearcher {
 			PreparedStatement stat = conn.prepareStatement("SELECT Name "
 														 + "FROM `Restaurant` "
 														 + "WHERE Name = ?");
-			stat.setString(1, "%" + input + "%");
+			stat.setString(1, input);
 			ResultSet rs = stat.executeQuery();
 			
 			if(rs.next()) {
