@@ -39,9 +39,7 @@ public class RegisterPage extends HttpServlet {
 		
 		if(res.equals("註冊成功")) {
 			out.println("<script>");
-			out.println("var yes = confirm('註冊成功，是否跳轉至登入介面？');");
 			out.println("if (yes) {window.location.replace(\"/Final_Project_G4/LoginPage\");}");
-			out.println("else {window.location.replace(\"/Final_Project_G4/RegisterPage\");}");
 			out.println("</script>");
 			out.flush();
 		}else {

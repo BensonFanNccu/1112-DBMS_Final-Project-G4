@@ -1,18 +1,18 @@
 
 *{
-font-family:微軟正黑體;  
+	font-family:微軟正黑體;  
 }
 
 body{
-background-color: white;
+	background-color: white;
 }
 
-#account, #password, h3, #fullname, #comfirm_password, #username2, #password2{
-width: 200px;
-height: 20px;
-margin: 10px;
-color: #000000;
-text-align: center;
+#account, #password, h3, #fullname, #comfirm_password, #username2, #password2, #verification{
+	width: 200px;
+	height: 20px;
+	margin: 10px;
+	color: #000000;
+	text-align: center;
 }
 
 t1 /*不置中的說明文字*/{
@@ -23,69 +23,69 @@ t1 /*不置中的說明文字*/{
 }
 
 h5{
-margin: 20px;
-color: #a3a2a3;
+	margin: 20px;
+	color: #a3a2a3;
 }
 
 h5:hover{
-color: black;
+	color: black;
 }
 
 #container1, #container2, #container3, #container4, #container5, #container6, #container7, #container8{
-display:flex;/*左右並排*/
-margin: 50%;
-padding: 10px;
-width: 800px;
-height: 450px;
-background-color: white;
-border-radius: 5px;
-border-top: 10px solid #dfc334;
-box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+	display:flex;/*左右並排*/
+	margin: 50%;
+	padding: 10px;
+	width: 800px;
+	height: 450px;
+	background-color: white;
+	border-radius: 5px;
+	border-top: 10px solid #dfc334;
+	box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
 
 /*定位對齊*/
-position:relative;   
-margin: auto;
-top: 50px;
-text-align:center;
-display: flex;
-justify-content: center;   
+	position:relative;   
+	margin: auto;
+	top: 50px;
+	text-align:center;
+	display: flex;
+	justify-content: center;   
 }
 
 .system_name{
 /*定位對齊*/
-position:relative;   
-margin: auto;
-bottom: -50px;
-text-align:center;
+	position:relative;   
+	margin: auto;
+	bottom: -50px;
+	text-align:center;
 
 }
 
 .submit{
-color: rgb(0, 0, 0);  
-background: #e6e270;
-width: 200px;
-height: 30px;
-margin: 10px;
-padding: 5px;
-border-radius: 5px;
-border: 0px;
+	color: rgb(0, 0, 0);  
+	background: #e6e270;
+	width: 200px;
+	height: 30px;
+	margin: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 0px;
 }
 
 .submit:hover{
-background: #dbb237;
+	background: #dbb237;
 }
 
 .title{
-text-align: center;
-color: #0b0b0b;
-margin: -200px 0px 0px 0px;
+	text-align: center;
+	color: #0b0b0b;
+	margin: -200px 0px 0px 0px;
 }
 
 input{
-padding: 10px;
-border: none; 
-border:solid 1px #ccc;
-border-radius: 5px;
+	padding: 10px;
+	border: none; 
+	border:solid 1px #ccc;
+	border-radius: 5px;
 }
 
 /*search bar*/

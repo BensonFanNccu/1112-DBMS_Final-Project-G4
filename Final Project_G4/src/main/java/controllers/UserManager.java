@@ -12,6 +12,8 @@ public class UserManager {
 	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 	static final String USER = "benson";
 	static final String PASS = "123456789";
+	
+	private Connection conn;
 
 	public UserManager() {
 		mysql_connect();
@@ -20,7 +22,7 @@ public class UserManager {
 	public void mysql_connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Can't find driver");
 			e.printStackTrace();
@@ -31,7 +33,6 @@ public class UserManager {
 
 	public boolean login(String account, String password) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT * FROM `user` "
 														 + "WHERE Account = ? "
 														 + "AND Password = ?");
@@ -54,8 +55,6 @@ public class UserManager {
 
 	public String register(String account, String email, String password, String repassword) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			// Check userName duplication
 			PreparedStatement stat = conn.prepareStatement("SELECT * "
 														 + "FROM `user` WHERE Account = ?");
@@ -95,7 +94,6 @@ public class UserManager {
 	
 	public int getUserId(String account) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT UserID "
 														 + "FROM `user` "
 														 + "WHERE Account = ?");
@@ -113,7 +111,6 @@ public class UserManager {
 	
 	public boolean writeReview(String uid, String rid, String comment, String star) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("INSERT INTO Review(UserID, RestID, Comment, Stars)"
 														 + " VALUES(?, ?, ?, ?)");
 			stat.setString(1, uid);
@@ -132,7 +129,6 @@ public class UserManager {
 	
 	public boolean addFavorite(String uid, String rid) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("Insert into Collection (UserID, RestID)"
 														 + "Values(?,?)");
 			stat.setString(1, uid);
@@ -149,7 +145,6 @@ public class UserManager {
 		ArrayList<String> res = new ArrayList<String>();
 		int count = 0;
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT r.NAME "
 														 + "FROM restaurant AS r, collection AS c "
 														 + "WHERE c.UserID = ? "
