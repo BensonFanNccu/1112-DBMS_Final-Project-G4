@@ -45,7 +45,7 @@ public class SearchPage extends HttpServlet {
 		RestSearcher searcher = new RestSearcher();
 		
 		String name = request.getParameter("name");
-		String Rname = searcher.searchByText(name);
+		String Rname = searcher.searchByName(name);
 		String RestID = "";
 		
 		if(Rname != null) {
