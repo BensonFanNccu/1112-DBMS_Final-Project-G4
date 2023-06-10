@@ -16,13 +16,17 @@
 			<h2>餐廳選擇器</h2>
 		</div>
 		
-		<div id="container2">
-			<h3 style="position: center; left: 92px">驗證</h3>
+		<div id="container1">
+			<div class="signup">
+				<h3 style="position: relative; left: 77px">驗證你的email</h3>
 			
-			<form action='/Final_Project_G4/VerifyPage' method='post'>
-				<input type="text" id="verification" name="email" placeholder="您的信箱" required>
-				<div class="tab"></div>
-			</form>
+				<form action='/Final_Project_G4/VerifyPage' method='post'>
+					<input type="text" id="account" name="verification" style="position: relative; left: 77px" placeholder="驗證碼" required>
+					<label style="position: relative; left: 100px; font-size:14px; color:#808080">已透過email發送驗證碼</label>
+					<div class="tab" ></div>
+					<input type="submit" value="送出" class="submit">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

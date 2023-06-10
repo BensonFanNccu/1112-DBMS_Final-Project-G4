@@ -21,8 +21,8 @@ public class FunctionListPage extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-	 	HttpSession hsession = request.getSession(true);
-	    String val = (String)hsession.getAttribute("pass");
+	 	HttpSession session = request.getSession(true);
+	    String val = (String)session.getAttribute("pass");
 	    if(val == null){
 	    	PrintWriter writer = response.getWriter();
 	    	writer.println("<script>");

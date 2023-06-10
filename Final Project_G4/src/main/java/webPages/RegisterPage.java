@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/RegisterPage")
 public class RegisterPage extends HttpServlet {
@@ -38,8 +39,12 @@ public class RegisterPage extends HttpServlet {
 		String res = db.register(account, email, password, repassword);
 		
 		if(res.equals("註冊成功")) {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("email", email);
+			
 			out.println("<script>");
-			out.println("if (yes) {window.location.replace(\"/Final_Project_G4/LoginPage\");}");
+			out.println("alert('註冊成功，請輸入驗證碼以啟用帳號')");
+			out.println("window.location.replace(\"/Final_Project_G4/VerificationPage\");");
 			out.println("</script>");
 			out.flush();
 		}else {

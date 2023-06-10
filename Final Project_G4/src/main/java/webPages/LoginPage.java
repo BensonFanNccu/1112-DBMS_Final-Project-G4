@@ -37,8 +37,7 @@ public class LoginPage extends HttpServlet {
 		
 		if(login) {
 			HttpSession session = request.getSession(true);
-			session.setMaxInactiveInterval(20);
-			session.setAttribute("pass","ok");
+			session.setAttribute("pass", "ok");
 			
 			int id = db.getUserId(account);
 			response.sendRedirect("/Final_Project_G4/FunctionListPage?id=" + id);

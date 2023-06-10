@@ -6,6 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class UserManager {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -90,6 +99,40 @@ public class UserManager {
 			return "發生未知錯誤";
 		}
 		return "註冊成功";
+	}
+	
+	public void sendVerification(String email, String code) {
+		String account = "restaurantchooserdbms@gmail.com";
+		String password = "hljuiqiciufrhjfp";
+		
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
+        
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(account, password);
+                    }
+                }
+        );
+        
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("restaurantchooserdbms@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("fbi0826@gmail.com"));
+            message.setSubject(code + "是您的驗證碼");
+            message.setText("感謝您使用餐廳選擇器。\n"
+            			  + "輸入驗證碼，即通過電子信箱完成身分確認\n"
+            			  + code + "是您的驗證碼");
+
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public int getUserId(String account) {
