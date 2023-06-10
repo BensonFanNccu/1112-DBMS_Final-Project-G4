@@ -37,6 +37,7 @@ public class LoginPage extends HttpServlet {
 		
 		if(login) {
 			HttpSession session = request.getSession(true);
+			session.setMaxInactiveInterval(60*10);
 			session.setAttribute("pass", "ok");
 			
 			int id = db.getUserId(account);

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/MyFavoritePage")
 public class MyFavoritePage extends HttpServlet {
@@ -24,10 +25,22 @@ public class MyFavoritePage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		
+	 	HttpSession session = request.getSession(true);
+	    String val = (String)session.getAttribute("pass");
+	    if(val == null){
+	    	PrintWriter writer = response.getWriter();
+	    	writer.println("<script>");
+	    	writer.println("alert('請先登入！')");
+	    	writer.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
+	    	writer.println("</script>");
+	    	return;
+	    }
+		
 		request.setAttribute("user", request.getQueryString());
 		
-		UserManager db = new UserManager();
-		ArrayList<String> favorite = db.getFavorite(request.getQueryString().split("=")[1]);
+		UserManager manager = new UserManager();
+		ArrayList<String> favorite = manager.getFavorite(request.getQueryString().split("=")[1]);
 		
 		if(favorite == null || favorite.isEmpty()) {
 			request.setAttribute("Rest1", "無");
@@ -49,7 +62,6 @@ public class MyFavoritePage extends HttpServlet {
 				}
 			}
 		}
-
 		request.getRequestDispatcher("myFavorite.jsp").forward(request, response);
 	}
 	
@@ -58,14 +70,14 @@ public class MyFavoritePage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		UserManager db = new UserManager();
+		UserManager manager = new UserManager();
 		PrintWriter out = response.getWriter();
 		String[] attr = request.getQueryString().split("&");
 		String uid = attr[0].split("=")[1];
 		String rid = attr[1].split("=")[1];
 		
 		
-		boolean res = db.addFavorite(uid, rid);
+		boolean res = manager.addFavorite(uid, rid);
 		
 		if(res) {
 			out.println("<script>");

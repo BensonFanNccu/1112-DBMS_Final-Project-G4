@@ -26,7 +26,7 @@ public class FunctionListPage extends HttpServlet {
 	    if(val == null){
 	    	PrintWriter writer = response.getWriter();
 	    	writer.println("<script>");
-	    	writer.println("alert('偵測到非法登入行為！')");
+	    	writer.println("alert('請先登入！')");
 	    	writer.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
 	    	writer.println("</script>");
 	    	return;
