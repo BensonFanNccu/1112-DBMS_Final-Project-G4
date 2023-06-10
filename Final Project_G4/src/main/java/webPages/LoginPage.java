@@ -1,6 +1,6 @@
 package webPages;
 
-import controllers.DBConnector;
+import controllers.UserManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +32,7 @@ public class LoginPage extends HttpServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		
-		DBConnector db = new DBConnector();
+		UserManager db = new UserManager();
 		boolean login = db.login(account, password);
 		
 		if(login) {

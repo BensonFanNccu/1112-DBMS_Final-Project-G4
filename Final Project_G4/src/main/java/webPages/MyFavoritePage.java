@@ -1,6 +1,6 @@
 package webPages;
 
-import controllers.DBConnector;
+import controllers.UserManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +26,7 @@ public class MyFavoritePage extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("user", request.getQueryString());
 		
-		DBConnector db = new DBConnector();
+		UserManager db = new UserManager();
 		ArrayList<String> favorite = db.getFavorite(request.getQueryString().split("=")[1]);
 		
 		if(favorite == null || favorite.isEmpty()) {
@@ -58,7 +58,7 @@ public class MyFavoritePage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		DBConnector db = new DBConnector();
+		UserManager db = new UserManager();
 		PrintWriter out = response.getWriter();
 		String[] attr = request.getQueryString().split("&");
 		String uid = attr[0].split("=")[1];

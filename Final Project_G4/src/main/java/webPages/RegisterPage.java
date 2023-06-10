@@ -1,6 +1,6 @@
 package webPages;
 
-import controllers.DBConnector;
+import controllers.UserManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +34,7 @@ public class RegisterPage extends HttpServlet {
 		String repassword = request.getParameter("confirm_password");
 		PrintWriter out = response.getWriter();
 		
-		DBConnector db = new DBConnector();
+		UserManager db = new UserManager();
 		String res = db.register(account, email, password, repassword);
 		
 		if(res.equals("註冊成功")) {

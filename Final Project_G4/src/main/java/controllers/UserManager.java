@@ -7,13 +7,13 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 
-public class DBConnector {
+public class UserManager {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 	static final String USER = "benson";
 	static final String PASS = "123456789";
 
-	public DBConnector() {
+	public UserManager() {
 		mysql_connect();
 	}
 

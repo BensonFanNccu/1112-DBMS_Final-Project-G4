@@ -1,6 +1,6 @@
 package webPages;
 
-import controllers.DBConnector;
+import controllers.UserManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +35,7 @@ public class CommentPage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		DBConnector db = new DBConnector();
+		UserManager db = new UserManager();
 		PrintWriter out = response.getWriter();
 		String[] attr = request.getQueryString().split("&");
 		String uid = attr[0].split("=")[1];
