@@ -184,12 +184,27 @@ public class UserManager {
 	
 	public boolean addFavorite(String uid, String rid) {
 		try {
-			PreparedStatement stat = conn.prepareStatement("Insert into Collection (UserID, RestID)"
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			String query = "SELECT COUNT(RestID) AS Count FROM Collection WHERE UserID = " + uid + ";";
+			Statement numStat = conn.createStatement();
+			numStat.execute(query);
+			ResultSet result = numStat.getResultSet();
+			String num = "";
+			while(result.next()) {
+				num = result.getString("Count");
+			}
+
+			if(Integer.parseInt(num) < 3) {
+				PreparedStatement stat = conn.prepareStatement("Insert into Collection (UserID, RestID)"
 														 + "Values(?,?)");
-			stat.setString(1, uid);
-			stat.setString(2, rid);
-			stat.executeUpdate();
-			return true;
+				stat.setString(1, uid);
+				stat.setString(2, rid);
+				stat.executeUpdate();
+				return true;
+			} else {
+				return false;
+			}
+
 		} catch(Exception e) {
 			e.printStackTrace();
 			return false;
