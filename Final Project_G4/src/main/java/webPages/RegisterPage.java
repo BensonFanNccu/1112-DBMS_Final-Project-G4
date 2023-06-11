@@ -22,6 +22,7 @@ public class RegisterPage extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		request.getRequestDispatcher("register.jsp").forward(request, response);				
 	}
 	

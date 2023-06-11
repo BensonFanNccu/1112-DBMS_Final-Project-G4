@@ -38,9 +38,8 @@
             		<div class="tab"></div>
             		
             		<img src="images/star.png" width="30" height="30">
-            		<div class="div1">
-            			<h5 style="position: relative;bottom:10px;"><a href = "javascript:void(0)" onclick = "toComment()">點我到評價頁面</a></h5>
-            		</div><br>
+              		<b><a href = "javascript:void(0)" onclick = "toComment()" style="position: relative;bottom:10px;" >點我到評價頁面</a></b>
+            		<br>
             		
             		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>
             		<input type="submit" value="加入我的最愛" name = "${user}" class="submit">
