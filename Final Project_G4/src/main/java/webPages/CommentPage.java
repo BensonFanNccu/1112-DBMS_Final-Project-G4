@@ -48,32 +48,35 @@ public class CommentPage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		UserManager db = new UserManager();
-		PrintWriter out = response.getWriter();
+		UserManager manager = new UserManager();
 		String[] attr = request.getQueryString().split("&");
+		String[] rateValues = request.getParameterValues("rate");
 		String uid = attr[0].split("=")[1];
 		String rid = attr[1].split("=")[1];
-		String com = request.getParameter("myTextbox");
+		String comment = request.getParameter("myTextbox");
 		
-		String[] rateValues = request.getParameterValues("rate");
 	    int star = 0;
 	    if (rateValues != null) {
 	        for (String value : rateValues) {
-	            if (value != null && value.equals("on")) {
-	            	star++;
+	            if (value != null) {
+	            	star = Integer.parseInt(value);
 	            }
 	        }
 	    }
 		
-		boolean res = db.writeReview(uid, rid, com, String.valueOf(star));
+		boolean res = manager.writeReview(uid, rid, comment, String.valueOf(star));
 		
 		if(res) {
+			PrintWriter out = response.getWriter();
+			
 			out.println("<script>");
 			out.println("alert('評論成功')");
 			out.println("document.location.assign(\"/Final_Project_G4/RestaurantPage?$id=" + uid + "&RestID=" + rid + "\");");
 			out.println("</script>");
 			out.flush();
 		}else {
+			PrintWriter out = response.getWriter();
+			
 			out.println("<script>");
 			out.println("alert('評論失敗')");
 			out.println("document.location.assign(\"/Final_Project_G4/RestaurantPage?$id=" + uid + "&RestID=" + rid + "\");");
