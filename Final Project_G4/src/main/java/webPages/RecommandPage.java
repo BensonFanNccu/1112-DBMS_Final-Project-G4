@@ -38,7 +38,7 @@ public class RecommandPage extends HttpServlet {
 		String[] attribute = request.getQueryString().split("&");
 		request.setAttribute("user", attribute[0]);
 		
-		if(attribute[1] == "RestID=none") {
+		if(attribute[1].equals("Result=none")) {
 			for(int i = 1; i <= 3; i++) {
 				request.setAttribute("Rest" + Integer.toString(i), "無搜尋結果");
 				request.setAttribute("RestID" + Integer.toString(i), "none");

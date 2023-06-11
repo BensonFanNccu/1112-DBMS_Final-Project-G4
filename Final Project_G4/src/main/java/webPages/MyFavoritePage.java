@@ -77,17 +77,17 @@ public class MyFavoritePage extends HttpServlet {
 		String rid = attr[1].split("=")[1];
 		
 		
-		boolean res = manager.addFavorite(uid, rid);
+		String res = manager.addFavorite(uid, rid);
 		
-		if(res) {
+		if(res.equals("新增成功")) {
 			out.println("<script>");
-			out.println("alert('新增成功')");
+			out.println("alert('" + res + "')");
 			out.println("document.location.assign(\"/Final_Project_G4/RestaurantPage?$id=" + uid + "&RestID=" + rid + "\");");
 			out.println("</script>");
 			out.flush();
 		}else {
 			out.println("<script>");
-			out.println("alert('新增失敗')");
+			out.println("alert('" + res + "')");
 			out.println("document.location.assign(\"/Final_Project_G4/RestaurantPage?$id=" + uid + "&RestID=" + rid + "\");");
 			out.println("</script>");
 			out.flush();

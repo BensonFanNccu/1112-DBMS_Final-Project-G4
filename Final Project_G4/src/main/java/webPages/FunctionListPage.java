@@ -30,8 +30,7 @@ public class FunctionListPage extends HttpServlet {
 	    	writer.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
 	    	writer.println("</script>");
 	    	return;
-	    }
-		
+	    }	
 		request.setAttribute("user", request.getQueryString());
 		request.getRequestDispatcher("functionList.jsp").forward(request, response);
 	}

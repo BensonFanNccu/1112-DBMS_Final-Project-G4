@@ -32,15 +32,15 @@ public class LoginPage extends HttpServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		
-		UserManager db = new UserManager();
-		boolean login = db.login(account, password);
+		UserManager manager = new UserManager();
+		boolean login = manager.login(account, password);
 		
 		if(login) {
 			HttpSession session = request.getSession(true);
 			session.setMaxInactiveInterval(60*10);
 			session.setAttribute("pass", "ok");
 			
-			int id = db.getUserId(account);
+			int id = manager.getUserId(account);
 			response.sendRedirect("/Final_Project_G4/FunctionListPage?id=" + id);
 		}else {
 			PrintWriter out = response.getWriter();		

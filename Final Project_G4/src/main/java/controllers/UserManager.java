@@ -182,32 +182,31 @@ public class UserManager {
 		}
 	}
 	
-	public boolean addFavorite(String uid, String rid) {
+	public String addFavorite(String uid, String rid) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			String query = "SELECT COUNT(RestID) AS Count FROM Collection WHERE UserID = " + uid + ";";
-			Statement numStat = conn.createStatement();
-			numStat.execute(query);
-			ResultSet result = numStat.getResultSet();
-			String num = "";
-			while(result.next()) {
-				num = result.getString("Count");
+			
+			PreparedStatement stat = conn.prepareStatement("SELECT COUNT(*) "
+														 + "FROM Collection "
+														 + "WHERE UserID = ?");
+			stat.setString(1, uid);
+			ResultSet rs = stat.executeQuery();
+			
+			if(rs.next()) {
+				System.out.print(rs.getString("COUNT(*)"));
+				if(Integer.parseInt(rs.getString("COUNT(*)")) >= 3) {
+					return "已達收藏上限!";
+				}
 			}
-
-			if(Integer.parseInt(num) < 3) {
-				PreparedStatement stat = conn.prepareStatement("Insert into Collection (UserID, RestID)"
-														 + "Values(?,?)");
-				stat.setString(1, uid);
-				stat.setString(2, rid);
-				stat.executeUpdate();
-				return true;
-			} else {
-				return false;
-			}
-
+			
+			stat = conn.prepareStatement("INSERT INTO Collection (UserID, RestID)"
+					 				   + "VALUE(?,?)");
+			stat.setString(1, uid);
+			stat.setString(2, rid);
+			stat.executeUpdate();
+			return "新增成功";
 		} catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			return "新增失敗";
 		}
 	}
 	
