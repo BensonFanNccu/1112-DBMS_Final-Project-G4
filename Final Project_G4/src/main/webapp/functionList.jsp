@@ -36,14 +36,14 @@ import = "java.io.PrintWriter"
 					<div class="tab" ></div>
             
 					<img src="images/food.png" style=" position: relative; top:12px;" width="30" height="30">
-					<input type="button" value="飲食紀錄" class="submit" onclick="">
+					<input type="button" value="飲食紀錄" class="submit" onclick="toRecord()">
 					<div class="tab" ></div>
             
 					<img src="images/setting.png" style=" position: relative; top:12px;" width="30" height="30">
-					<input type="button" value="設定個人資料" class="submit" onclick="">
+					<input type="button" value="設定個人資料" class="submit" onclick="toProfile()">
 					<div class="tab" ></div>
  
-					<h5><a href = "javascript:void(0)" onclick = "signOut()">sign out</a></h5>
+					<h5><a href = "javascript:void(0)" onclick = "signOut()">${signOut}</a></h5>
 				</div>
 			</div><!-- container3 end-->
 		</div>
@@ -58,11 +58,27 @@ import = "java.io.PrintWriter"
 		}
 	
 		function toMyFavorite(){
-			document.location.assign("/Final_Project_G4/MyFavoritePage?${user}");
+			if(${user} == "1"){
+				alert("體驗時無法使用此功能");
+			}else{
+				document.location.assign("/Final_Project_G4/MyFavoritePage?${user}");
+			}
 		}
 	
 		function toTurnTable(){
 			document.location.assign("/Final_Project_G4/TurnTablePage?${user}");
+		}
+		
+		function toRecord(){
+			if(${user} == "1"){
+				alert("體驗時無法使用此功能");
+			}
+		}
+		
+		function toProfile(){
+			if(${user} == "1"){
+				alert("體驗時無法使用此功能");
+			}
 		}
 		
 		function signOut(){

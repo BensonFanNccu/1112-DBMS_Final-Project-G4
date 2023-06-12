@@ -22,6 +22,14 @@ public class FunctionListPage extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 	 	HttpSession session = request.getSession(true);
+	 	
+	 	if(request.getQueryString().equals("id=1")) {
+	 		session.setAttribute("pass", "ok");
+	 		request.setAttribute("signOut", "離開");
+	 	}else {
+	 		request.setAttribute("signOut", "登出");
+	 	}
+	 	
 	    String val = (String)session.getAttribute("pass");
 	    if(val == null){
 	    	PrintWriter writer = response.getWriter();

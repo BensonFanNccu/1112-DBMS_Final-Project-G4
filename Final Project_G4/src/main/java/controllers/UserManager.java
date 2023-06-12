@@ -184,6 +184,9 @@ public class UserManager {
 	
 	public String addFavorite(String uid, String rid) {
 		try {
+			if(uid.equals("1")) {
+				return "體驗時無法使用此功能";
+			}
 			
 			PreparedStatement stat = conn.prepareStatement("SELECT COUNT(*) "
 														 + "FROM Collection "
@@ -192,7 +195,6 @@ public class UserManager {
 			ResultSet rs = stat.executeQuery();
 			
 			if(rs.next()) {
-				System.out.print(rs.getString("COUNT(*)"));
 				if(Integer.parseInt(rs.getString("COUNT(*)")) >= 3) {
 					return "已達收藏上限!";
 				}

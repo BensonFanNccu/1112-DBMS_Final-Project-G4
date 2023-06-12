@@ -56,7 +56,11 @@
 	</body>
 	<script>
 		function toComment(){
-			document.location.assign("/Final_Project_G4/CommentPage?${user}&${RestID}");
+			if(${user} == "1"){
+				alert("體驗時無法使用此功能");
+			}else{
+				document.location.assign("/Final_Project_G4/CommentPage?${user}&${RestID}");
+			}
 		}
 		
 		function toSearch(){
