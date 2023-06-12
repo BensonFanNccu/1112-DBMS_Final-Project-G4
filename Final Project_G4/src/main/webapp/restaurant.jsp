@@ -46,7 +46,7 @@
             		<div class="tab"></div>
             		</form>
             		
-            		<input type="button" value="返回上一頁" class="submit" onclick="window.history.back(-1);">
+            		<input type="button" value="返回上一頁" class="submit" onclick="toLastPage()">
             		<div class="tab"></div>
             		
             		<input type="button" value="返回至功能選單" class="submit" onclick="toFunctionList()">
@@ -61,6 +61,10 @@
 		
 		function toSearch(){
 			document.location.assign("/Final_Project_G4/SearchPage?${user}");
+		}
+		
+		function toLastPage(){
+			document.location.assign("${last}");
 		}
 	
   		function toFunctionList(){

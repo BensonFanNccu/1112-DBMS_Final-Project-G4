@@ -37,6 +37,10 @@ public class RestaurantPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
+	    
+	    String lastPage = (String)session.getAttribute("last");
+	    System.out.println(lastPage);
+	    request.setAttribute("last", lastPage);
 		
 		String[] attribute = request.getQueryString().split("&");
 		request.setAttribute("user", attribute[0]);

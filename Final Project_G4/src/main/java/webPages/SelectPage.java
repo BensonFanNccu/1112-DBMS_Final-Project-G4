@@ -60,13 +60,16 @@ public class SelectPage extends HttpServlet {
 				attr += result.get(i);
 			}			
 		}
-		
 		PrintWriter out = response.getWriter();
+		String url = String.format("/Final_Project_G4/RecommandPage?" + request.getQueryString() + "&Result=" + attr);
+		
+		HttpSession session = request.getSession(true);
+		session.setMaxInactiveInterval(60*10);
+		session.setAttribute("last", url);
 		
 		out.println("<script>");
-		out.println("window.location.replace(\"/Final_Project_G4/RecommandPage?" + request.getQueryString() + "&Result=" + attr +"\");");
+		out.println("window.location.replace(\"" + url +"\");");
 		out.println("</script>");
 		out.flush();
-		
 	}
 }

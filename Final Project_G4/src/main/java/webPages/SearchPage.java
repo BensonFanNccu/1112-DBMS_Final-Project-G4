@@ -52,8 +52,12 @@ public class SearchPage extends HttpServlet {
 		
 		if(Rname != null) {
 			RestID = searcher.getIdByName(Rname);
-			
 			PrintWriter out = response.getWriter();
+			String url = String.format("/Final_Project_G4/SearchPage?" + request.getQueryString());
+			
+			HttpSession session = request.getSession(true);
+			session.setMaxInactiveInterval(60*10);
+			session.setAttribute("last", url);
 			
 			out.println("<script>");
 			out.println("window.location.replace(\"/Final_Project_G4/RestaurantPage?" + request.getQueryString() + "&RestID=" + RestID +"\");");
