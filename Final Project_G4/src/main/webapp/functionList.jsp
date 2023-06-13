@@ -17,7 +17,7 @@ import = "java.io.PrintWriter"
 		<div class="choosefunction_page">
 			<div id="container3">
 				<div class="functions">
-					<h3 style="position: relative;left:25px;top:10px">功能選單</h3><br>
+					<h3>功能選單</h3><br>
 					           
 					<img src="images/select.png" style=" position: relative; top:12px;" width="30" height="30">
 					<input type="button" value="選擇功能" class="submit" onclick="toSelect()">

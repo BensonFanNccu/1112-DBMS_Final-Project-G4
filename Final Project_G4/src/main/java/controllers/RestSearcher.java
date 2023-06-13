@@ -81,7 +81,7 @@ public class RestSearcher {
 			ResultSet rs = stat.executeQuery();
 			
 			if(rs.next()) {
-				Restaurant r = new Restaurant(restID, rs.getString("Name"), rs.getString("Address"), rs.getString("Dining_time"));
+				Restaurant r = new Restaurant(restID, rs.getString("Name"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Business_hour"), rs.getString("Closed"), rs.getString("Vegan"));
 				return r;
 			}else {
 				return null;

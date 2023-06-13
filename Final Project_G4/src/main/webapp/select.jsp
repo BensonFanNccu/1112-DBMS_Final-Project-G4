@@ -44,7 +44,7 @@
     <div class="option_page">
         <div id="container4">
           <div class="options">
-            <h3  style="position: relative;left:180px;bottom:5px;">選擇介面</h3>
+            <h3>選擇介面</h3>
             <form action = '/Final_Project_G4/SelectPage?${user}' method = 'post'><br>
             <br><b><label style="position: relative;bottom:25px;">預算: </label></b>
                 <label><input type="checkbox" id="budget1" name = "budget1" value="100元以下" onclick = "checkBudget()"><span>100元以下</span></label>

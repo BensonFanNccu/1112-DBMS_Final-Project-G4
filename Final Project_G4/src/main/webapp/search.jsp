@@ -15,7 +15,7 @@
 		<div class="search_page">
   			<div id="container6">
     			<div class="search">
-     				<h3 style="position: relative;left:205px;">餐廳查詢</h3><br>
+     				<h3>餐廳查詢</h3><br>
       				<form action = '/Final_Project_G4/SearchPage?${user}' method = 'post'>
         				<input type="text" name = "name" placeholder="輸入關鍵字" list="rest"><!--這邊我不知道要怎麼跳出推薦搜尋結果（chatGPT說要用什麼AJAX技術）-->
         				<datalist id="rest">
