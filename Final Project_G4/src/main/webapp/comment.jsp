@@ -59,11 +59,12 @@
     </div>
     <div id="container4">
     <form action = "/Final_Project_G4/CommentPage?${user}&${RestID}" method = "post">
-        <h3>Your Comment:</h3>
-        <textarea id="myTextbox" name="myTextbox" rows="10" cols="80" required></textarea><br><br>
+    	<b style="position: relative; top: 8px; font-size: 19px;">撰寫對於${Name}的評價</b>
+        <h3 style="position: relative; right: 190px; top: 10px">Your Comments : </h3>
+        <textarea id="myTextbox" name="myTextbox" style="position: relative; top: 15px" rows="10" cols="80" required></textarea><br><br>
 
-        <h3>Rating:</h3>
-        <div class="rate">
+        <label style="position: relative; right: 150px; top: 5px; font-size: 18px; font-weight: bold;">Rating : </label>
+        <div class="rate" style="position: relative; top: 10px">
             <input type="radio" id="star5" name="rate" value="5" />
             <label for="star5" title="text">&#9733;</label>
 
@@ -80,8 +81,8 @@
             <label for="star1" title="text">&#9733;</label>    
     	</div>
     	<input type = "submit" class = "submit" style="position: relative;bottom:180px;">
-    	<h5 style="position: relative;bottom:185px;"><a href="javascript:void(0)" onclick = "toRestaurant()">返回餐廳</a></h5>
-    	<h5 style="position: relative;bottom:185px;"><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>
+    	<h5 style="position: relative;bottom:189px;"><a href="javascript:void(0)" onclick = "toRestaurant()">返回餐廳</a></h5>
+    	<h5 style="position: relative;bottom:193px;"><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>
     </form>
     <!-- <form action='/Final_Project_G4/CommentPage?${user}&${RestID}' method='post'>
 
