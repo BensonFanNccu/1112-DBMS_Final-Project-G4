@@ -43,7 +43,7 @@ import = "java.io.PrintWriter"
 					<input type="button" value="設定個人資料" class="submit" onclick="toProfile()">
 					<div class="tab" ></div>
  
-					<h5><a href = "javascript:void(0)" onclick = "signOut()">${signOut}</a></h5>
+					<h4><a href = "javascript:void(0)" onclick = "signOut()">${signOut}</a></h4>
 				</div>
 			</div><!-- container3 end-->
 		</div>
