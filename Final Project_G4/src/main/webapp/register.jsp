@@ -15,7 +15,7 @@
 		<div class="signup_page">
 			<div id="container2">
 				<div class="signup">            
-					<h3 style="position: relative; left: 92px">註冊 Sign Up</h3>
+					<h3 style="position: relative; left: 92px">註冊 Sign Up</h3><br>
          
 					<form action='/Final_Project_G4/RegisterPage' method='post'>
 						<input type="text" id="account" name="account" style="position: relative; left: 93px" placeholder="使用者帳號" required>
