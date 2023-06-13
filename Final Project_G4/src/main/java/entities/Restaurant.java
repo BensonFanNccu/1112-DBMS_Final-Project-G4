@@ -4,17 +4,24 @@ public class Restaurant {
     private String restID;
     private String name;
     private String address;
+    private String phone;
+    private String businessHour;
+    private String closed;
+    private String vegan;
     private String budget;
     private String diningTime;
     private String type;
     private String distance;
     private double score;
 
-    public Restaurant(String id, String name, String address, String diningTime) {
+    public Restaurant(String id, String name, String address, String phone, String businessHour, String closed, String vegan) {
     	restID = id;
     	this.name = name;
     	this.address = address;
-    	this.diningTime = diningTime;
+    	this.phone = phone;
+    	this.businessHour = businessHour;
+    	this.closed = closed;
+    	this.vegan = vegan;
     }
     
     public Restaurant(String id, String budget, String time, String type, String distance) {
@@ -35,6 +42,21 @@ public class Restaurant {
     
     public String getAddress() {
     	return address;
+    }
+    public String getPhone() {
+    	return phone;
+    }
+    
+    public String getBusinessHour() {
+    	return businessHour;
+    }
+    
+    public String getClosed() {
+    	return closed;
+    }
+    
+    public String getVegan() {
+    	return vegan;
     }
     
     public String getBudget() {
