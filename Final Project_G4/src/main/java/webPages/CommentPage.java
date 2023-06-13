@@ -1,6 +1,8 @@
 package webPages;
 
+import controllers.RestSearcher;
 import controllers.UserManager;
+import entities.Restaurant;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,6 +42,9 @@ public class CommentPage extends HttpServlet {
 		
 		request.setAttribute("user", attr[0]);
 		request.setAttribute("RestID", attr[1]);
+		RestSearcher searcher = new RestSearcher();
+		Restaurant r = searcher.getRestaurant(attr[1].split("=")[1]);
+		request.setAttribute("Name", r.getName());
 		request.getRequestDispatcher("comment.jsp").forward(request, response);
 	}
 	
