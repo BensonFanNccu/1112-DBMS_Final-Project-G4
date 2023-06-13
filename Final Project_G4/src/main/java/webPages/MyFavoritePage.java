@@ -82,7 +82,7 @@ public class MyFavoritePage extends HttpServlet {
 		
 		if(res.equals("新增成功")) {
 			out.println("<script>");
-			out.println("alert('" + res + "')");
+			out.println("alert('" + res + "!')");
 			out.println("document.location.assign(\"/Final_Project_G4/RestaurantPage?$id=" + uid + "&RestID=" + rid + "\");");
 			out.println("</script>");
 			out.flush();

@@ -3,7 +3,7 @@
 <html>
 	<head> 
 		<meta charset="utf-8">
-		<title>Restaurant Chooser</title>  
+		<title>RestaurantChooser</title>  
 		<link rel="stylesheet" type="text/css" href="css/restaurantChooser.css"/> 
 		<meta name="viewpoint" content="width=device-width,initial-scale=1.0">
 	</head>
@@ -33,8 +33,10 @@
 							<img src="images/myFavorite.png" width="30" height="30" style="position: relative;top:12px;" >
 						</div>
 						<div class="tab" ></div>
+						
+						<input type="button" value="刪除我的最愛" class="submit" style="position: relative; top: 200px"onclick="toDelete()">
         
-						<h5 style= "position:relative; top:200px;"><a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a></h5>
+						<h5 style= "position:relative; top:188px;"><a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a></h5>
                
 				</div>
 			</div>
@@ -43,6 +45,10 @@
 	<script>
   		function toFunctionList(){
   			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
+		}
+  		
+  		function toDelete(){
+  			document.location.assign("/Final_Project_G4/DeleteFavorPage?${user}");
 		}
 	</script>
 </html>

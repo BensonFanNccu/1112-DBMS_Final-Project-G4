@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -15,6 +15,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import entities.Restaurant;
 
 public class UserManager {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -229,6 +231,39 @@ public class UserManager {
 			}
 			return res;
 		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String deleteCollect(String uid, String rid) {
+		try {
+			PreparedStatement stat = conn.prepareStatement("DELETE FROM Collection WHERE UserID = ? AND RestID = ?;");
+			stat.setString(1, uid);
+			stat.setString(2, rid);
+			stat.executeUpdate();
+			return "刪除成功";
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "刪除失敗";
+		}
+	}
+	
+	public String RestNameToID(String name) {
+		String id = "";
+		
+		try {
+			PreparedStatement stat = conn.prepareStatement("SELECT RestID FROM Restaurant WHERE Name = ?;");
+			stat.setString(1, name);
+			ResultSet result = stat.executeQuery();
+			
+			while(result.next()) {
+				id = result.getString("RestID");
+			}
+			
+			return id;
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

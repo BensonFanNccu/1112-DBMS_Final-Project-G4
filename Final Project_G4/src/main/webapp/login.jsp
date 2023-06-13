@@ -29,7 +29,7 @@
 						<input type="password" id="password" name="password" placeholder="密碼" required>
 						<div class="tab"></div>
 						
-						<input type="submit" value="Login" class="submit"><!--點進就登入，要寫登入function-->
+						<input type="submit" value="登入" class="submit"><!--點進就登入，要寫登入function-->
 					</form>  
 
 					<input type = "button" value="體驗功能" class="submit" onclick = "guestLogin()">
