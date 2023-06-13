@@ -22,32 +22,44 @@
     		<div id="container7">
         		<div class="intro">
             		<div class="tab"></div>
-            		<h4>餐廳介紹</h4>
+            		<h3>餐廳介紹</h3>
+            		<div class="tab"></div><br>
+            		
+            		<img src="images/myFavorite.png" width="30" height="30" style="position: relative;bottom:10px;">
+            		<b style="position: relative;bottom:20px;">${Name}</b>
             		<div class="tab"></div>
             		
-            		<img src="images/myFavorite.png" width="30" height="30" style="position: relative;bottom:5px;">
-            		<b style="position: relative;bottom:15px;">${Name}</b><!--加入收藏的按鈕-->
+            		<img src="images/location.png" width="30" height="30" style="position: relative;bottom:8px;">
+            		<b style="position: relative;bottom:18px;">地址：${Address}</b>
             		<div class="tab"></div>
             		
-            		<img src="images/location.png" width="30" height="30">
-            		<b style="position: relative;bottom:10px;">${Address}</b>
+            		<img src="images/phone.png" width="30" height="30" style="position: relative;bottom:6px;">
+            		<b style="position: relative;bottom:16px;">電話：${Phone}</b>
             		<div class="tab"></div>
             		
-            		<img src="images/clock.png" width="30" height="30">
-            		<b style="position: relative;bottom:10px;">${DiningTime}</b>
+            		<img src="images/clock.png" width="30" height="30" style="position: relative;bottom:4px;">
+            		<b style="position: relative;bottom:14px;">營業時間：${BusHR}</b>
             		<div class="tab"></div>
             		
-            		<img src="images/star.png" width="30" height="30">
-              		<b><a href = "javascript:void(0)" onclick = "toComment()" style="position: relative;bottom:10px;" >點我到評價頁面</a></b>
+            		<img src="images/close.png" width="30" height="30" style="position: relative;bottom:2px;">
+            		<b style="position: relative;bottom:12px;">公休日：${Closed}</b>
+            		<div class="tab"></div>
+            		
+            		<img src="images/vegan.png" width="30" height="28" style="position: relative;bottom:1px;">
+            		<b style="position: relative;bottom:9px;">是否提供素食餐點：${Vegan}</b>
+            		<div class="tab"></div>
+            		
+            		<img src="images/star.png" width="30" height="30" style="position: relative;bottom:-7px;">
+              		<b><a href = "javascript:void(0)" onclick = "toComment()" style="position: relative;bottom:0px;">點我到評價頁面</a></b>
             		<br>
             		
             		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>
-            		<input type="submit" value="加入我的最愛" name = "${user}" class="submit">
+            		<input type="submit" value="加入我的最愛" name = "${user}" class="submit" style="position: relative;bottom:-13px;">
             		<div class="tab"></div>
-            		</form>
+            		</form><br>
             		
             		<input type="button" value="返回上一頁" class="submit" onclick="toLastPage()">
-            		<div class="tab"></div>
+
             		
             		<input type="button" value="返回至功能選單" class="submit" onclick="toFunctionList()">
         		</div>
@@ -56,11 +68,7 @@
 	</body>
 	<script>
 		function toComment(){
-			if(${user} == "1"){
-				alert("體驗時無法使用此功能");
-			}else{
-				document.location.assign("/Final_Project_G4/CommentPage?${user}&${RestID}");
-			}
+			document.location.assign("/Final_Project_G4/CommentPage?${user}&${RestID}");
 		}
 		
 		function toSearch(){
