@@ -32,6 +32,7 @@
 						<input type="submit" value="Login" class="submit"><!--點進就登入，要寫登入function-->
 					</form>  
 
+					<input type = "button" value="體驗功能" class="submit" onclick = "guestLogin()">
 					<h5><a href = "javascript:void(0)" onclick = "toRegister()">註冊帳號</a></h5>
           
 				</div><!-- login end-->
@@ -43,7 +44,11 @@
   			document.getElementById("account").value = "";
   			document.getElementById("password").value = "";
       		window.location.replace("/Final_Project_G4/RegisterPage");
-  		}  	
+  		}
+  		
+  		function guestLogin(){
+  			document.location.assign("/Final_Project_G4/FunctionListPage?id=1");
+  		}
 	</script>
 </html>
 
