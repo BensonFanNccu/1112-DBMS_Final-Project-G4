@@ -50,7 +50,10 @@ public class RestaurantPage extends HttpServlet {
 		
 		request.setAttribute("Name", r.getName());
 		request.setAttribute("Address", r.getAddress());
-		request.setAttribute("DiningTime", r.getDiningTime());
+		request.setAttribute("Phone", r.getPhone());
+		request.setAttribute("BusHR", r.getBusinessHour());
+		request.setAttribute("Closed", r.getClosed());
+		request.setAttribute("Vegan", r.getVegan());
 		
 		request.getRequestDispatcher("restaurant.jsp").forward(request, response);
 	}
