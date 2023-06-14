@@ -78,6 +78,8 @@ import = "java.io.PrintWriter"
 		function toProfile(){
 			if(${user} == "1"){
 				alert("體驗時無法使用此功能");
+			}else{
+				window.location.replace("/Final_Project_G4/ProfilePage?${user}");
 			}
 		}
 		

@@ -36,8 +36,8 @@
 						
 						<input type="submit" value="確認刪除" class="submit" style="position: relative; top: 180px">
         			</form>
-						<input type="button" value="回到我的最愛" class="submit" style="position: relative; top: 180px" onclick="toMyFavor()">
-						<h5 style= "position:relative; top:170px;"><a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a></h5>
+					<input type="button" value="回到我的最愛" class="submit" style="position: relative; top: 180px" onclick="toMyFavor()">
+					<h5 style= "position:relative; top:170px;"><a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a></h5>
 				</div>
 			</div>
 		</div>

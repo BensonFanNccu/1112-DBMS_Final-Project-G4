@@ -47,8 +47,8 @@
   			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
 		}
   		
-  		function toDelete(){
-  			document.location.assign("/Final_Project_G4/DeleteFavorPage?${user}");
+  		function toDeleteFavorite(){
+  			document.location.assign("/Final_Project_G4/DeleteFavoritePage?${user}");
 		}
 	</script>
 </html>

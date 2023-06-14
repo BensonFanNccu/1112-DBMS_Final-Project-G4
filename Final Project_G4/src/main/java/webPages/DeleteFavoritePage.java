@@ -1,6 +1,7 @@
 package webPages;
 
 import controllers.UserManager;
+import controllers.RestSearcher;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/DeleteFavorPage")
-public class DeleteFavorPage extends HttpServlet {
+public class DeleteFavoritePage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public DeleteFavorPage() {
+	public DeleteFavoritePage() {
 	    super();
 	}
     
@@ -55,7 +56,7 @@ public class DeleteFavorPage extends HttpServlet {
 				}
 			}
 		}
-		request.getRequestDispatcher("deleteFavor.jsp").forward(request, response);
+		request.getRequestDispatcher("deleteFavorite.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -64,10 +65,12 @@ public class DeleteFavorPage extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String uid = request.getQueryString().split("=")[1];
-		UserManager manager = new UserManager();
-		ArrayList<String> favorite = manager.getFavorite(uid);
 		String rid = "";
 		String res = "none";
+		RestSearcher searcher = new RestSearcher();
+		UserManager manager = new UserManager();
+		ArrayList<String> favorite = manager.getFavorite(uid);
+
 		
 		if(favorite.size() < 2 && (request.getParameter("delete2") != null || request.getParameter("delete3") != null)) {
 			PrintWriter out = response.getWriter();
@@ -89,15 +92,15 @@ public class DeleteFavorPage extends HttpServlet {
 		}
 		
 		if(request.getParameter("delete1") != null) {
-			rid = manager.RestNameToID(favorite.get(0));
+			rid = searcher.getNameById(favorite.get(0));
 			res = manager.deleteCollect(uid, rid);
 		}
 		if (request.getParameter("delete2") != null) {
-			rid = manager.RestNameToID(favorite.get(1));
+			rid = searcher.getNameById(favorite.get(1));
 			res = manager.deleteCollect(uid, rid);
 		}
 		if (request.getParameter("delete3") != null) {
-			rid = manager.RestNameToID(favorite.get(2));
+			rid = searcher.getNameById(favorite.get(2));
 			res = manager.deleteCollect(uid, rid);
 		}
 		

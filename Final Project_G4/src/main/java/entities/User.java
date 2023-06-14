@@ -9,9 +9,10 @@ import java.util.ArrayList;
 
 public class User {
 
-	private int userID;
+	private String userID;
 	private String account;
 	private String password;
+	private String email;
 	private String type;
 	private ArrayList<Integer> collection = new ArrayList<Integer>();
 
@@ -20,17 +21,24 @@ public class User {
 	static final String USER = "yenrong";
 	static final String PASS = "dbmsproject";
 
-	public User(int id) {
+	public User(String id) {
 		this.userID = id;
 	}
 	
-	public User(int id, String account, String password) {
+	public User(String id, String account, String password) {
 		userID = id;
 		this.account = account;
 		this.password = password;
 	}
+	
+	public User(String id, String account, String password, String email) {
+		userID = id;
+		this.account = account;
+		this.password = password;
+		this.email = email;
+	}
 
-	public int getUserID() {
+	public String getUserID() {
 		return userID;
 	}
 	
@@ -40,6 +48,10 @@ public class User {
 	
 	public String getPassword() {
 		return password;
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 
 	public String getType() {

@@ -1,10 +1,13 @@
 package controllers;
+
+import entities.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -16,13 +19,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import entities.Restaurant;
-
 public class UserManager {
-	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-	static final String USER = "benson";
-	static final String PASS = "123456789";
+	private static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	private static final String USER = "benson";
+	private static final String PASS = "123456789";
 	
 	private Connection conn;
 
@@ -125,10 +125,10 @@ public class UserManager {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("restaurantchooserdbms@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
-            message.setSubject("餐廳選擇器驗證信，" + code + "是您的驗證碼");
+            message.setSubject(code + "是您的驗證碼");
             message.setText("非常感謝您使用餐廳選擇器！\n"
-            			  + code + "是您的驗證碼，"
-            			  + "請在餐廳選擇器登入頁面輸入驗證碼，即可完成身分確認！\n");
+      			  			+ code + "是您的驗證碼，"
+      			  			+ "請在餐廳選擇器登入頁面輸入驗證碼，即可完成身分確認！\n");
 
             Transport.send(message);
         } catch (MessagingException e) {
@@ -251,7 +251,10 @@ public class UserManager {
 	
 	public String deleteCollect(String uid, String rid) {
 		try {
-			PreparedStatement stat = conn.prepareStatement("DELETE FROM Collection WHERE UserID = ? AND RestID = ?;");
+			PreparedStatement stat = conn.prepareStatement("DELETE "
+														 + "FROM Collection "
+														 + "WHERE UserID = ? "
+														 + "AND RestID = ?;");
 			stat.setString(1, uid);
 			stat.setString(2, rid);
 			stat.executeUpdate();
@@ -263,22 +266,42 @@ public class UserManager {
 		}
 	}
 	
-	public String RestNameToID(String name) {
-		String id = "";
-		
+	public User getUserByID(String uid) {
 		try {
-			PreparedStatement stat = conn.prepareStatement("SELECT RestID FROM Restaurant WHERE Name = ?;");
-			stat.setString(1, name);
-			ResultSet result = stat.executeQuery();
+			PreparedStatement stat = conn.prepareStatement("SELECT * "
+														 + "FROM user "
+														 + "WHERE UserID = ?");
+			stat.setString(1, uid);
+			ResultSet rs = stat.executeQuery();
 			
-			while(result.next()) {
-				id = result.getString("RestID");
+			if(rs.next()) {
+				User u = new User(rs.getString("UserID"), rs.getString("Account"), rs.getString("Password"), rs.getString("Email"));
+				return u;
+			}else {
+				return null;
 			}
-			
-			return id;
-		} catch (SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+//	public String RestNameToID(String name) {
+//		String id = "";
+//		
+//		try {
+//			PreparedStatement stat = conn.prepareStatement("SELECT RestID FROM Restaurant WHERE Name = ?;");
+//			stat.setString(1, name);
+//			ResultSet result = stat.executeQuery();
+//			
+//			while(result.next()) {
+//				id = result.getString("RestID");
+//			}
+//			
+//			return id;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 }
