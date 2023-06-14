@@ -1,11 +1,15 @@
 package controllers;
 
 import entities.Restaurant;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RestSearcher {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -106,6 +110,47 @@ public class RestSearcher {
 			}else {
 				return null;
 			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<String> getSource(String rid){
+		try {
+			ArrayList<String> result = new ArrayList<String>();
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("SELECT Source "
+														 + "FROM menupicture "
+														 + "WHERE RestID = ?");
+			stat.setString(1, rid);
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next()) {
+				result.add(rs.getString("Source"));
+			}
+			
+			return result;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public HashMap<String, String> getMenu(String rid){
+		try {
+			HashMap<String, String> menu = new HashMap<String, String>();
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("SELECT * "
+														 + "FROM menu "
+														 + "WHERE RestID = ?");
+			stat.setString(1, rid);
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next()) {
+				menu.put(rs.getString("DishName"), rs.getString("Price"));
+			}
+			return menu;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;

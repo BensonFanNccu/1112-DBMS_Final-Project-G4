@@ -6,6 +6,9 @@
 <title>Restaurant Chooser</title>
 </head>
 <body>
-	<img src="restaurants/logo.png" width="200" height="150">
+	<h1>${menu}</h1>
+	<h1>${source}</h1>
 </body>
+<script>
+</script>
 </html>

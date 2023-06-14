@@ -53,7 +53,8 @@
               		<b><a href = "javascript:void(0)" onclick = "toComment()" style="position: relative;bottom:0px;">點我到評價頁面</a></b>
             		<br>
             		
-            		<b><a href = "javascript:void(0)" onclick = "toMenu()" style="position: relative;bottom:0px;">點我到菜單頁面</a></b>
+            		<img src="images/menu.png" width="30" height="30" style="position: relative;bottom:-7px;">
+            		<b><a href = "javascript:void(0)" onclick = "toMenu()" style="position: relative;bottom:-2px;">點我到菜單頁面</a></b>
             		<br>
             		
             		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>

@@ -1,5 +1,7 @@
 package webPages;
 
+import controllers.RestSearcher;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,6 +11,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 @WebServlet("/RestaurantMenuPage")
 public class RestaurantMenuPage extends HttpServlet {
@@ -22,6 +28,10 @@ public class RestaurantMenuPage extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		
+		String[] attribute = request.getQueryString().split("&");
+		request.setAttribute("user", attribute[0]);
+		request.setAttribute("RestID", attribute[1]);
+		
 		HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
 	    if(val == null){
@@ -32,6 +42,24 @@ public class RestaurantMenuPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
+	    
+	    RestSearcher searcher = new RestSearcher();
+	    HashMap<String, String> menu = searcher.getMenu(attribute[1].split("=")[1]);
+	    
+	    String menuTable = String.format("<table>\n<tr>\n<th>品名</th>\n<th>價格</th>\n</tr>\n");
+	    for(Entry<String, String> entry : menu.entrySet()) {
+	    	menuTable += String.format("<tr>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", entry.getKey(), entry.getValue());
+	    }
+	   
+	    ArrayList<String> sources = searcher.getSource(attribute[1].split("=")[1]);
+	    String sourceHtml = "";
+	    
+	    for(String source : sources) {
+	    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" width=\"600\" height=\"450\">");
+	    }
+	    
+	    request.setAttribute("menu", menuTable);
+	    request.setAttribute("source", sourceHtml);
 	    request.getRequestDispatcher("restaurantMenu.jsp").forward(request, response);
 	}
 	
