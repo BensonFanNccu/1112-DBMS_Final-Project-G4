@@ -55,11 +55,14 @@ public class RestaurantMenuPage extends HttpServlet {
 	    String sourceHtml = "";
 	    
 	    for(String source : sources) {
-	    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" width=\"600\" height=\"450\">");
+	    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" style=\"max-width: 370px; max-height: 330px;\">");
 	    }
 	    
+		request.setAttribute("name", searcher.getNameById(attribute[1].split("=")[1]));
 	    request.setAttribute("menu", menuTable);
 	    request.setAttribute("source", sourceHtml);
+	    String lastPage = (String)session.getAttribute("last");
+	    request.setAttribute("last", lastPage);
 	    request.getRequestDispatcher("restaurantMenu.jsp").forward(request, response);
 	}
 	
