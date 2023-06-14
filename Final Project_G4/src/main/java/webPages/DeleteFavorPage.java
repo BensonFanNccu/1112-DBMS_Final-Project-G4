@@ -110,13 +110,13 @@ public class DeleteFavorPage extends HttpServlet {
 			out.flush();
 		} else if(res.equals("none")){
 			out.println("<script>");
-			out.println("alert('您的最愛沒有任何更動!')");
+			out.println("alert('您的最愛沒有任何更動。')");
 			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?$id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();
 		} else {
 			out.println("<script>");
-			out.println("alert('" + res + "')");
+			out.println("alert('" + res + "。')");
 			out.println("document.location.assign(\"/Final_Project_G4/DeleteFavorPage?$id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();

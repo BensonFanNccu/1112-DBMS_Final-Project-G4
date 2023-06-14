@@ -72,7 +72,7 @@ public class UserManager {
 			stat.setString(1, account);
 			ResultSet rs = stat.executeQuery();
 			if (rs.next()) {
-				return "此名稱已被使用";
+				return "此名稱已被使用，請使用別的名稱";
 			}
 
 			// Check email duplication
@@ -81,11 +81,11 @@ public class UserManager {
 			stat.setString(1, email);
 			rs = stat.executeQuery();
 			if (rs.next()) {
-				return "此Email已被使用";
+				return "此Email已被使用，請使用另一個Email";
 			}
 			
 			if(!password.equals(repassword)) {
-				return "密碼前後不一致";
+				return "您輸入的密碼前後不一致";
 			}
 
 			// Insert values
@@ -100,7 +100,7 @@ public class UserManager {
 			e.printStackTrace();
 			return "發生未知錯誤";
 		}
-		return "註冊成功";
+		return "註冊成功！";
 	}
 	
 	public void sendVerification(String email, String code) {
@@ -125,10 +125,10 @@ public class UserManager {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("restaurantchooserdbms@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
-            message.setSubject(code + "是您的驗證碼");
-            message.setText("感謝您使用餐廳選擇器。\n"
-            			  + "輸入驗證碼，即通過電子信箱完成身分確認\n"
-            			  + code + "是您的驗證碼");
+            message.setSubject("餐廳選擇器驗證信，" + code + "是您的驗證碼");
+            message.setText("非常感謝您使用餐廳選擇器！\n"
+            			  + code + "是您的驗證碼，"
+            			  + "請在餐廳選擇器登入頁面輸入驗證碼，即可完成身分確認！\n");
 
             Transport.send(message);
         } catch (MessagingException e) {
@@ -187,18 +187,31 @@ public class UserManager {
 	public String addFavorite(String uid, String rid) {
 		try {
 			if(uid.equals("1")) {
-				return "體驗時無法使用此功能";
+				return "不好意思，體驗時無法使用此功能。";
 			}
 			
 			PreparedStatement stat = conn.prepareStatement("SELECT COUNT(*) "
-														 + "FROM Collection "
-														 + "WHERE UserID = ?");
+															+ "FROM Collection "
+														 	+ "WHERE UserID = ?");
 			stat.setString(1, uid);
 			ResultSet rs = stat.executeQuery();
 			
+			PreparedStatement stat1 = conn.prepareStatement("SELECT COUNT(*) AS count "
+					 										+ "FROM Collection "
+					 										+ "WHERE UserID = ? AND RestID = ?");
+			stat1.setString(1, uid);
+			stat1.setString(2, rid);
+			ResultSet checkRepeat = stat1.executeQuery();
+			
+			if(checkRepeat.next()) {
+				if(Integer.parseInt(checkRepeat.getString("count")) >= 1) {
+					return "您已收藏過這家餐廳!";
+				}
+			}
+			
 			if(rs.next()) {
 				if(Integer.parseInt(rs.getString("COUNT(*)")) >= 3) {
-					return "已達收藏上限!";
+					return "您收藏的餐廳數量已達上限!";
 				}
 			}
 			
@@ -210,7 +223,7 @@ public class UserManager {
 			return "新增成功";
 		} catch(Exception e) {
 			e.printStackTrace();
-			return "新增失敗";
+			return "新增失敗。";
 		}
 	}
 	
