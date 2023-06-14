@@ -93,15 +93,15 @@ public class DeleteFavoritePage extends HttpServlet {
 		
 		if(request.getParameter("delete1") != null) {
 			rid = searcher.getIdByName(favorite.get(0));
-			res = manager.deleteCollect(uid, rid);
+			res = manager.deleteFavorite(uid, rid);
 		}
 		if (request.getParameter("delete2") != null) {
 			rid = searcher.getIdByName(favorite.get(1));
-			res = manager.deleteCollect(uid, rid);
+			res = manager.deleteFavorite(uid, rid);
 		}
 		if (request.getParameter("delete3") != null) {
 			rid = searcher.getIdByName(favorite.get(2));
-			res = manager.deleteCollect(uid, rid);
+			res = manager.deleteFavorite(uid, rid);
 		}
 		
 		PrintWriter out = response.getWriter();

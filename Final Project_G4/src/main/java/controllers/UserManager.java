@@ -249,7 +249,7 @@ public class UserManager {
 		}
 	}
 	
-	public String deleteCollect(String uid, String rid) {
+	public String deleteFavorite(String uid, String rid) {
 		try {
 			PreparedStatement stat = conn.prepareStatement("DELETE "
 														 + "FROM Collection "
@@ -283,6 +283,51 @@ public class UserManager {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public String changeAccount(String uid, String account) {
+		try {
+			PreparedStatement stat = conn.prepareStatement("UPDATE user "
+														 + "SET Account = ? "
+														 + "WHERE UserID = ? ");
+			stat.setString(1, account);
+			stat.setString(2, uid);
+			stat.executeUpdate();
+			return "修改成功!";
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "修改失敗";
+		}
+	}
+	
+	public String changeEmail(String uid, String email) {
+		try {
+			PreparedStatement stat = conn.prepareStatement("UPDATE user "
+														 + "SET Email = ? "
+														 + "WHERE UserID = ? ");
+			stat.setString(1, email);
+			stat.setString(2, uid);
+			stat.executeUpdate();
+			return "修改成功!";
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "修改失敗";
+		}
+	}
+	
+	public String changePassword(String uid, String password) {
+		try {
+			PreparedStatement stat = conn.prepareStatement("UPDATE user "
+														 + "SET Password = ? "
+														 + "WHERE UserID = ? ");
+			stat.setString(1, password);
+			stat.setString(2, uid);
+			stat.executeUpdate();
+			return "修改成功!";
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "修改失敗";
 		}
 	}
 }

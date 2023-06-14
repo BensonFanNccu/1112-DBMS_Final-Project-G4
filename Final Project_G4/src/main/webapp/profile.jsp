@@ -16,15 +16,15 @@
         <div class="personal info"> 
           <h3>個人資料頁面</h3>
           <br><b><label>帳號：${account}</label></b>
-          <h5><a href="Accountchange.html">更改帳號名稱</a></h5>
+          <h5><a href="javascript:void(0)" onclick = "toChangeAccount()">更改帳號名稱</a></h5>
           
             <!-- 這邊貌似要和後端結合，可以顯示＋更改使用者帳號 -->
           <br><b><label>電子信箱：${email}</label></b>
-          <h5><a href="Emailchange.html">更改電子信箱</a></h5>
+          <h5><a href="javascript:void(0)" onclick = "toChangeEmail()">更改電子信箱</a></h5>
           
             <!-- 這邊貌似要和後端結合，可以顯示＋更改使用者用戶名 -->
           <br><b><label>密碼：${password}</label></b>
-          <h5><a href="passwordchange.html">更改密碼</a></h5>
+          <h5><a href="javascript:void(0)" onclick = "toChangePassword()">更改密碼</a></h5>
           
             <!-- 這邊貌似要和後端結合，可以顯示＋更改使用者email -->
           <a href="javascript:void(0)" onclick = "toFunctionList()">
@@ -35,6 +35,18 @@
     </div>
   </body>
   <script>
+  	function toChangeAccount(){
+  		window.location.replace("/Final_Project_G4/ChangeAccountPage?${user}");
+  	}
+  	
+  	function toChangeEmail(){
+  		window.location.replace("/Final_Project_G4/ChangeEmailPage?${user}");
+  	}
+  	
+  	function toChangePassword(){
+  		window.location.replace("/Final_Project_G4/ChangePasswordPage?${user}");
+  	}
+  
 	function toFunctionList(){
 		window.location.replace("/Final_Project_G4/FunctionListPage?${user}");
 	}
