@@ -58,13 +58,11 @@
             		<br>
             		
             		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>
-            		<input type="submit" value="加入我的最愛" name = "${user}" class="submit" style="position: relative;bottom:-13px;">
+            		<input type="submit" value="加入我的最愛" name = "${user}" class="submit" style="position: relative;bottom:-8px;">
             		<div class="tab"></div>
-            		</form><br>
+            		</form>
             		
             		<input type="button" value="返回上一頁" class="submit" onclick="toLastPage()">
-
-            		
             		<input type="button" value="返回至功能選單" class="submit" onclick="toFunctionList()">
         		</div>
     		</div>
