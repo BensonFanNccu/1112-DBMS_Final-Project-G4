@@ -31,7 +31,8 @@ public class RestaurantMenuPage extends HttpServlet {
 	    	writer.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
 	    	writer.println("</script>");
 	    	return;
-	    }	
+	    }
+	    request.getRequestDispatcher("restaurantMenu.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

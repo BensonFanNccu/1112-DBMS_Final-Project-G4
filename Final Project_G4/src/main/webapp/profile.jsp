@@ -9,7 +9,7 @@
     </head>
   <body>
     <div class="system_name">
-      <img src="images/logo.png" width="200" height="150"  >
+      <img src="images/logo.png" width="200" height="150" >
     </div>
     <div class="personal_info_page">
       <div id="container1">

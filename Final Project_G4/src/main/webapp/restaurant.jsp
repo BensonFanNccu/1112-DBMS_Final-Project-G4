@@ -53,6 +53,9 @@
               		<b><a href = "javascript:void(0)" onclick = "toComment()" style="position: relative;bottom:0px;">點我到評價頁面</a></b>
             		<br>
             		
+            		<b><a href = "javascript:void(0)" onclick = "toMenu()" style="position: relative;bottom:0px;">點我到菜單頁面</a></b>
+            		<br>
+            		
             		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>
             		<input type="submit" value="加入我的最愛" name = "${user}" class="submit" style="position: relative;bottom:-13px;">
             		<div class="tab"></div>
@@ -73,6 +76,10 @@
 			} else {
 				document.location.assign("/Final_Project_G4/CommentPage?${user}&${RestID}");
 			}
+		}
+		
+		function toMenu(){
+			document.location.assign("/Final_Project_G4/RestaurantMenuPage?${user}&${RestID}");
 		}
 		
 		function toSearch(){
