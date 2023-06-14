@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/DeleteFavorPage")
+@WebServlet("/DeleteFavoritePage")
 public class DeleteFavoritePage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -76,7 +76,7 @@ public class DeleteFavoritePage extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('您的刪除包含無效的勾選!')");
-			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?$id=" + uid + "\");");
+			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();
 			return;
@@ -85,22 +85,22 @@ public class DeleteFavoritePage extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('您的刪除包含無效的勾選!')");
-			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?$id=" + uid + "\");");
+			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();
 			return;
 		}
 		
 		if(request.getParameter("delete1") != null) {
-			rid = searcher.getNameById(favorite.get(0));
+			rid = searcher.getIdByName(favorite.get(0));
 			res = manager.deleteCollect(uid, rid);
 		}
 		if (request.getParameter("delete2") != null) {
-			rid = searcher.getNameById(favorite.get(1));
+			rid = searcher.getIdByName(favorite.get(1));
 			res = manager.deleteCollect(uid, rid);
 		}
 		if (request.getParameter("delete3") != null) {
-			rid = searcher.getNameById(favorite.get(2));
+			rid = searcher.getIdByName(favorite.get(2));
 			res = manager.deleteCollect(uid, rid);
 		}
 		
@@ -108,19 +108,19 @@ public class DeleteFavoritePage extends HttpServlet {
 		if(res.equals("刪除成功")) {
 			out.println("<script>");
 			out.println("alert('" + res + "!')");
-			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?$id=" + uid + "\");");
+			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();
 		} else if(res.equals("none")){
 			out.println("<script>");
 			out.println("alert('您的最愛沒有任何更動。')");
-			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?$id=" + uid + "\");");
+			out.println("document.location.assign(\"/Final_Project_G4/MyFavoritePage?id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();
 		} else {
 			out.println("<script>");
 			out.println("alert('" + res + "。')");
-			out.println("document.location.assign(\"/Final_Project_G4/DeleteFavorPage?$id=" + uid + "\");");
+			out.println("document.location.assign(\"/Final_Project_G4/DeleteFavoritePage?id=" + uid + "\");");
 			out.println("</script>");
 			out.flush();
 		}

@@ -285,23 +285,4 @@ public class UserManager {
 			return null;
 		}
 	}
-	
-//	public String RestNameToID(String name) {
-//		String id = "";
-//		
-//		try {
-//			PreparedStatement stat = conn.prepareStatement("SELECT RestID FROM Restaurant WHERE Name = ?;");
-//			stat.setString(1, name);
-//			ResultSet result = stat.executeQuery();
-//			
-//			while(result.next()) {
-//				id = result.getString("RestID");
-//			}
-//			
-//			return id;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
 }

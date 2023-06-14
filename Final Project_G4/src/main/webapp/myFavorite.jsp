@@ -12,7 +12,6 @@
 			<div id="container7">
 				<div class="favorite"> 
 					<h3>我的最愛</h3>
-					
 						<div style="position: relative;top:30px;">
 							<img src="images/firstplace.png" width="30" height="30" style="position: relative;top:12px;">
 							<span>${Rest1}</span>
@@ -34,7 +33,7 @@
 						</div>
 						<div class="tab" ></div>
 						
-						<input type="button" value="刪除我的最愛" class="submit" style="position: relative; top: 200px"onclick="toDelete()">
+						<input type="button" value="刪除我的最愛" class="submit" style="position: relative; top: 200px"onclick="toDeleteFavorite()">
         
 						<h5 style= "position:relative; top:188px;"><a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a></h5>
                
