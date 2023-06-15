@@ -61,8 +61,6 @@ public class RestaurantMenuPage extends HttpServlet {
 		request.setAttribute("name", searcher.getNameById(attribute[1].split("=")[1]));
 	    request.setAttribute("menu", menuTable);
 	    request.setAttribute("source", sourceHtml);
-	    String lastPage = (String)session.getAttribute("last");
-	    request.setAttribute("last", lastPage);
 	    request.getRequestDispatcher("restaurantMenu.jsp").forward(request, response);
 	}
 	

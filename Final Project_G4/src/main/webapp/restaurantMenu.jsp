@@ -33,11 +33,11 @@
 </body>
 <script>
 function toLastPage(){
-	document.location.assign("${last}");
+	document.location.assign("/Final_Project_G4/RestaurantPage?${user}&${RestID}");
 }
 
 function toFunctionList(){
-		document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
+	document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
 }
 </script>
 </html>
