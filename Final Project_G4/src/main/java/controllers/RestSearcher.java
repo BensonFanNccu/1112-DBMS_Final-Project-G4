@@ -156,5 +156,26 @@ public class RestSearcher {
 			return null;
 		}
 	}
+	
+	public HashMap<String, String> getComment(String rid){
+		try {
+			HashMap<String, String> comment = new HashMap<String, String>();
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			PreparedStatement stat = conn.prepareStatement("SELECT * "
+														 + "FROM review "
+														 + "WHERE RestID = ? "
+														 + "ORDER BY Time DESC");
+			stat.setString(1, rid);
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next()) {
+				comment.put(rs.getString("Comment"), rs.getString("Stars"));
+			}
+			return comment;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }
