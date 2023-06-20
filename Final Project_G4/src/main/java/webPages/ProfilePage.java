@@ -36,7 +36,6 @@ public class ProfilePage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-	    
 	    UserManager manager = new UserManager();
 	    User u = manager.getUserByID(request.getQueryString().split("=")[1]);
 	    if(u != null) {

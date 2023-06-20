@@ -36,7 +36,6 @@ public class SelectPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-		
 		request.setAttribute("user", request.getQueryString());
 		request.getRequestDispatcher("select.jsp").forward(request, response);
 	}

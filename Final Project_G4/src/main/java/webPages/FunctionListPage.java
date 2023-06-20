@@ -30,7 +30,6 @@ public class FunctionListPage extends HttpServlet {
 	 	}else {
 	 		request.setAttribute("signOut", "登出");
 	 	}
-	 	
 	    String val = (String)session.getAttribute("pass");
 	    if(val == null){
 	    	PrintWriter writer = response.getWriter();

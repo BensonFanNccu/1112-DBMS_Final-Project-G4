@@ -43,7 +43,6 @@ public class RegisterPage extends HttpServlet {
 		if(res.equals("註冊成功！")) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("email", email);
-			
 			out.println("<script>");
 			out.println("alert('註冊成功，請輸入驗證碼以啟用帳號')");
 			out.println("window.location.replace(\"/Final_Project_G4/VerificationPage\");");

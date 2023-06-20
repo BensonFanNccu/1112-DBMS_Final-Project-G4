@@ -45,7 +45,7 @@ import = "java.io.PrintWriter"
  
 					<h4><a href = "javascript:void(0)" onclick = "signOut()">${signOut}</a></h4>
 				</div>
-			</div><!-- container3 end-->
+			</div>
 		</div>
 	</body>
 	<script>

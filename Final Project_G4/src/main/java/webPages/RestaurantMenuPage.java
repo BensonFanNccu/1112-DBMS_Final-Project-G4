@@ -68,11 +68,6 @@ public class RestaurantMenuPage extends HttpServlet {
 		    }
 	    }
 	    
-	    for(String source : sources) {
-	    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" style=\"max-width: 370px; max-height: 300px;\">");
-	    }
-	    searcher.close();
-	    
 	    String lastPage = (String)session.getAttribute("last");
 		request.setAttribute("user", attribute[0]);
 		request.setAttribute("RestID", attribute[1]);
@@ -80,6 +75,8 @@ public class RestaurantMenuPage extends HttpServlet {
 	    request.setAttribute("menu", menuTable);
 	    request.setAttribute("source", sourceHtml);
 	    request.setAttribute("last", lastPage);
+	    
+	    searcher.close();
 	    request.getRequestDispatcher("restaurantMenu.jsp").forward(request, response);
 	}
 	

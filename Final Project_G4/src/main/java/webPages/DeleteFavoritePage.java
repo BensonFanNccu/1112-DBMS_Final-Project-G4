@@ -79,6 +79,7 @@ public class DeleteFavoritePage extends HttpServlet {
 			out.flush();
 			return;
 		}
+		
 		if(favorite.size() < 3 && request.getParameter("delete3") != null) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

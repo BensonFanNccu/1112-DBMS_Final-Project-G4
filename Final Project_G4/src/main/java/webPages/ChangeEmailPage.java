@@ -34,7 +34,6 @@ public class ChangeEmailPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-	    
 		request.setAttribute("user", request.getQueryString());
 	    request.getRequestDispatcher("changeEmail.jsp").forward(request, response);
 	}

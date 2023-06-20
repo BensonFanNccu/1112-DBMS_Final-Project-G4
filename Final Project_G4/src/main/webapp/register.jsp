@@ -39,7 +39,7 @@
 			</div><!-- container2 end-->
 		</div><!-- signup_page end--> 
 	</body>
-	<script>
+	<script> 
   		function toLogin(){
   			document.getElementById("account").value = "";
   			document.getElementById("username2").value = "";

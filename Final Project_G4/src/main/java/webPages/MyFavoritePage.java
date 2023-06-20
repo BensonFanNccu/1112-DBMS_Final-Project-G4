@@ -37,7 +37,6 @@ public class MyFavoritePage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-		
 		UserManager manager = new UserManager();
 		ArrayList<String> favorite = manager.getFavorite(request.getQueryString().split("=")[1]);
 		

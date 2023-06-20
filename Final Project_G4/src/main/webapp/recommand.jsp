@@ -34,7 +34,7 @@
     			</div>
   			</div>
 		</div>
-	</body>
+	</body> 
 	<script>
   		function toFunctionList(){
   			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");

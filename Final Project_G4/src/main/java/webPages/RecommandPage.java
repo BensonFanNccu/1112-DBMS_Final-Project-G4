@@ -62,7 +62,6 @@ public class RecommandPage extends HttpServlet {
 					request.setAttribute("Rest3", "無搜尋結果");
 					request.setAttribute("RestID3", "none");
 				}
-
 			}else {
 				for(int i = 1; i < attrRest.length; i++) {
 					request.setAttribute("Rest" + Integer.toString(i+1), searcher.getNameById(attrRest[i]));

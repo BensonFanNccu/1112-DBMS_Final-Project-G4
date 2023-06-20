@@ -35,7 +35,6 @@ public class TurnTablePage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-		
 		RestSelector selector = new RestSelector();
 		ArrayList<String> res = selector.random();
 		for(int i = 0; i < res.size(); i++) {

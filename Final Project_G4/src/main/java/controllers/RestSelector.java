@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RestSelector {
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-	private static final String USER = "yenrong";
-	private static final String PASS = "dbmsproject";
+	private static final String USER = "root";
+	private static final String PASS = "000000";
 	
 	private ArrayList<String> budget;
 	private ArrayList<String> time;
@@ -92,6 +92,7 @@ public class RestSelector {
 			type.add("'日式'");
 			type.add("'美式'");
 			type.add("'義式'");
+			type.add("'大馬風味'");
 		}
 		
 		if(request.getParameter("type3") != null) {

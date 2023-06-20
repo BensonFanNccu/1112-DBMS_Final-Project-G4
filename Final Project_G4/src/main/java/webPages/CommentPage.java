@@ -38,7 +38,6 @@ public class CommentPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-		
 		String[] attr = request.getQueryString().split("&");
 		RestSearcher searcher = new RestSearcher();
 		Restaurant r = searcher.getRestaurant(attr[1].split("=")[1]);

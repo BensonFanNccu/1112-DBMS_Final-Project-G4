@@ -38,7 +38,7 @@
 				</div><!-- login end-->
 			</div><!-- container1 end-->
 		</div><!-- login_page end-->
-	</body>
+	</body> 
 	<script>
   		function toRegister(){
   			document.getElementById("account").value = "";

@@ -72,35 +72,28 @@
 					<input type="radio" id="star2" name="rate" value="2" /> 
 						<label for="star2" title="text">&#9733;</label> <input type="radio" id="star1" name="rate" value="1" /> <label for="star1" title="text">&#9733;</label>
 				</div>
-			<input type="submit" class="submit"
-				style="position: relative; bottom: 180px;">
-			<h5 style="position: relative; bottom: 189px;">
-				<a href="javascript:void(0)" onclick="toRestaurant()">返回餐廳</a>
-			</h5>
-			<h5 style="position: relative; bottom: 193px;">
-				<a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a>
-			</h5>
-		</form>
-		<!-- <form action='/Final_Project_G4/CommentPage?${user}&${RestID}' method='post'>
+				<input type="submit" class="submit" style="position: relative; bottom: 180px;">
+				<h5 style="position: relative; bottom: 189px;">
+					<a href="javascript:void(0)" onclick="toRestaurant()">返回餐廳</a>
+				</h5>
+				<h5 style="position: relative; bottom: 193px;">
+					<a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a>
+				</h5>
+			</form>
+		</div>
+	</body>
+	<script>
+		function submit() {
+			alert('評論成功!')
+			document.location.assign("/Final_Project_G4/RestaurantPage?${user}&${RestID}");
+		}
 
-    </form> -->
+		function toRestaurant() {
+			document.location.assign("/Final_Project_G4/RestaurantPage?${user}&${RestID}");
+		}
 
-	</div>
-</body>
-<script>
-	function submit() {
-		alert('評論成功!')
-		document.location
-				.assign("/Final_Project_G4/RestaurantPage?${user}&${RestID}");
-	}
-
-	function toRestaurant() {
-		document.location
-				.assign("/Final_Project_G4/RestaurantPage?${user}&${RestID}");
-	}
-
-	function toFunctionList() {
-		document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
-	}
-</script>
+		function toFunctionList() {
+			document.location.assign("/Final_Project_G4/FunctionListPage?${user}");
+		}
+	</script>
 </html>

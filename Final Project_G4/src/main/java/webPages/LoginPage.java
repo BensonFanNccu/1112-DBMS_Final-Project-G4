@@ -34,6 +34,7 @@ public class LoginPage extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		UserManager manager = new UserManager();
+		
 		boolean login = manager.login(account, password);
 		
 		if(login) {

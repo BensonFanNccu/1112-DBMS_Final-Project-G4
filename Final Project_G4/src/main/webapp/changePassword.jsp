@@ -21,7 +21,7 @@
 						<input type="text" id="username2" name="reusername2" placeholder="再確認一次" required>
 						<div class="tab"></div>
 						<input type="submit" value="更改完成" class="submit">
-					</form>
+					</form> 
 				</div>
 			</div>
 		</div>

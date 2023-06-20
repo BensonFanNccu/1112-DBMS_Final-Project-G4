@@ -34,7 +34,6 @@ public class ChangeAccountPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-	    
 	    request.setAttribute("user", request.getQueryString());
 	    request.getRequestDispatcher("changeAccount.jsp").forward(request, response);
 	}

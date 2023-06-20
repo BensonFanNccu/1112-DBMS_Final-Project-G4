@@ -53,11 +53,14 @@ public class RestaurantCommentPage extends HttpServlet {
 		    	commentTable += String.format("<tr>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", entry.getKey(), entry.getValue());
 		    }
 	    }
-	    searcher.close();
+	    
+	    
 		request.setAttribute("user", attribute[0]);
 		request.setAttribute("RestID", attribute[1]);
 		request.setAttribute("Rest", searcher.getNameById(attribute[1].split("=")[1]));
 		request.setAttribute("comment", commentTable);
+		
+		searcher.close();
 	    request.getRequestDispatcher("restaurantComment.jsp").forward(request, response);
 	}
 	

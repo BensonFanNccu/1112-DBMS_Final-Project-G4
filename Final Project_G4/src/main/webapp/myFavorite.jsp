@@ -36,7 +36,7 @@
 						<input type="button" value="刪除我的最愛" class="submit" style="position: relative; top: 200px"onclick="toDeleteFavorite()">
         
 						<h5 style= "position:relative; top:188px;"><a href="javascript:void(0)" onclick="toFunctionList()">返回主選單</a></h5>
-               
+                
 				</div>
 			</div>
 		</div>

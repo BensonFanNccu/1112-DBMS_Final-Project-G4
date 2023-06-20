@@ -14,8 +14,8 @@ import java.util.HashMap;
 public class RestSearcher {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-	private static final String USER = "yenrong";
-	private static final String PASS = "dbmsproject";
+	private static final String USER = "root";
+	private static final String PASS = "000000";
 	
 	private Connection conn;
 	

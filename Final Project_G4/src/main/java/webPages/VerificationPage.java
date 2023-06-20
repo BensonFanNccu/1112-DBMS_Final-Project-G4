@@ -32,7 +32,7 @@ public class VerificationPage extends HttpServlet {
 	 	
 	    String val = (String)session.getAttribute("email");
 	    String code = String.format("%06d", new Random().nextInt(1000000));
-	    
+	     
 	    manager.sendVerification(val, code);
 	    manager.close();
 	    session.setAttribute("verificationCode", code);

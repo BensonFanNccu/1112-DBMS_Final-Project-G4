@@ -34,7 +34,6 @@ public class ChangePasswordPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-	    
 		request.setAttribute("user", request.getQueryString());
 	    request.getRequestDispatcher("changePassword.jsp").forward(request, response);
 	}

@@ -43,6 +43,7 @@ public class RestaurantPage extends HttpServlet {
 
 		RestSearcher searcher = new RestSearcher();
 		Restaurant r = searcher.getRestaurant(attribute[1].split("=")[1]);
+		
 		searcher.close();
 		
 		request.setAttribute("last", lastPage);
