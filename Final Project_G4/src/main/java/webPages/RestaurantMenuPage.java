@@ -47,9 +47,15 @@ public class RestaurantMenuPage extends HttpServlet {
 	    HashMap<String, String> menu = searcher.getMenu(attribute[1].split("=")[1]);
 	    
 	    String menuTable = String.format("<table>\n<tr>\n<th>品名</th>\n<th>價格</th>\n</tr>\n");
-	    for(Entry<String, String> entry : menu.entrySet()) {
-	    	menuTable += String.format("<tr>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", entry.getKey(), entry.getValue());
+	    
+	    if(menu.isEmpty()) {
+	    	menuTable += String.format("<tr>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", "很抱歉，找不到這家餐廳的餐點詳細資訊", "");
+	    }else {
+	    	for(Entry<String, String> entry : menu.entrySet()) {
+		    	menuTable += String.format("<tr>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", entry.getKey(), entry.getValue());
+		    }
 	    }
+	    
 	   
 	    ArrayList<String> sources = searcher.getSource(attribute[1].split("=")[1]);
 	    String sourceHtml = "";

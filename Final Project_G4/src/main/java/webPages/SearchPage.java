@@ -69,7 +69,7 @@ public class SearchPage extends HttpServlet {
 			
 			out.println("<script>");
 			out.println("alert('很抱歉，找不到您所輸入的餐廳。')");
-			out.println("window.location.replace(\"/Final_Project_G4/SearchPage\");");
+			out.println("window.location.replace(\"/Final_Project_G4/SearchPage?" + request.getQueryString() + "\");");
 			out.println("</script>");
 			out.flush();
 		}
