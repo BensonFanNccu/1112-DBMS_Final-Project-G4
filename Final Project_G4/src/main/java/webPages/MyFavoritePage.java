@@ -5,14 +5,14 @@ import controllers.UserManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.util.ArrayList;
 
 @WebServlet("/MyFavoritePage")
 public class MyFavoritePage extends HttpServlet {
@@ -23,9 +23,9 @@ public class MyFavoritePage extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 	 	HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
@@ -37,8 +37,6 @@ public class MyFavoritePage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-		
-		request.setAttribute("user", request.getQueryString());
 		
 		UserManager manager = new UserManager();
 		ArrayList<String> favorite = manager.getFavorite(request.getQueryString().split("=")[1]);
@@ -59,25 +57,25 @@ public class MyFavoritePage extends HttpServlet {
 				} else {
 					request.setAttribute("Rest2", favorite.get(1));
 					request.setAttribute("Rest3", favorite.get(2));
-					
 				}
 			}
 		}
+		manager.close();
+		request.setAttribute("user", request.getQueryString());
 		request.getRequestDispatcher("myFavorite.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 		UserManager manager = new UserManager();
 		PrintWriter out = response.getWriter();
+		
 		String[] attr = request.getQueryString().split("&");
 		String uid = attr[0].split("=")[1];
 		String rid = attr[1].split("=")[1];
-		
-		
 		String res = manager.addFavorite(uid, rid);
 		
 		if(res.equals("新增成功")) {
@@ -93,5 +91,6 @@ public class MyFavoritePage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 		}
+		manager.close();
 	}
 }

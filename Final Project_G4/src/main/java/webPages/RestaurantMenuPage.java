@@ -29,8 +29,6 @@ public class RestaurantMenuPage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String[] attribute = request.getQueryString().split("&");
-		request.setAttribute("user", attribute[0]);
-		request.setAttribute("RestID", attribute[1]);
 		
 		HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
@@ -56,7 +54,6 @@ public class RestaurantMenuPage extends HttpServlet {
 		    }
 	    }
 	    
-	   
 	    ArrayList<String> sources = searcher.getSource(attribute[1].split("=")[1]);
 	    String sourceHtml = "";
 	    
@@ -71,8 +68,11 @@ public class RestaurantMenuPage extends HttpServlet {
 	    for(String source : sources) {
 	    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" style=\"max-width: 370px; max-height: 300px;\">");
 	    }
+	    searcher.close();
 	    
 	    String lastPage = (String)session.getAttribute("last");
+		request.setAttribute("user", attribute[0]);
+		request.setAttribute("RestID", attribute[1]);
 		request.setAttribute("name", searcher.getNameById(attribute[1].split("=")[1]));
 	    request.setAttribute("menu", menuTable);
 	    request.setAttribute("source", sourceHtml);

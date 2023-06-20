@@ -22,6 +22,8 @@ public class RestSelector {
 	private ArrayList<String> distance;
     private ArrayList<Restaurant> result;
     
+    private Connection conn;
+    
 	public RestSelector() {
 		mysql_connect();
 	}
@@ -29,7 +31,7 @@ public class RestSelector {
 	public void mysql_connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Can't find driver");
 			e.printStackTrace();
@@ -117,7 +119,7 @@ public class RestSelector {
     private void suggest() {
         String query = "SELECT * " +
         			   "FROM Restaurant WHERE (";
-//        String weekdayQuery = "SELECT CONVERT(WEEKDAY(CURDATE()), char) as weekday";
+        String weekdayQuery = "SELECT CONVERT(WEEKDAY(CURDATE()), char) as weekday";
 
         if (budget != null && !budget.isEmpty()) {
         	int count = 0;
@@ -176,28 +178,26 @@ public class RestSelector {
         	query += ")";
         }
 
-//        String weekday = "";
-//        try {
-//            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-//            PreparedStatement stat = conn.prepareStatement(weekdayQuery);
-//            ResultSet rs = stat.executeQuery();
-//            
-//            if (rs.next()) {
-//            	weekday = Integer.toString(rs.getInt("weekday"));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        String weekday = "";
+        try {
+            PreparedStatement stat = conn.prepareStatement(weekdayQuery);
+            ResultSet rs = stat.executeQuery();
+            
+            if (rs.next()) {
+            	weekday = Integer.toString(rs.getInt("weekday"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-//        query += "AND (Open1 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
-//                 "CONVERT(substring(Time1, 1, 8), time) AND CONVERT(substring(Time1, 10, 8), time)) " +
-//                 "OR (Open2 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
-//                 "CONVERT(substring(Time2, 1, 8), time) AND CONVERT(substring(Time2, 10, 8), time)) " +
-//                 "OR (Open3 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
-//                 "CONVERT(substring(Time3, 1, 8), time) AND CONVERT(substring(Time3, 10, 8), time));";
+        query += "AND (Open1 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
+                 "CONVERT(substring(Time1, 1, 8), time) AND CONVERT(substring(Time1, 10, 8), time)) " +
+                 "OR (Open2 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
+                 "CONVERT(substring(Time2, 1, 8), time) AND CONVERT(substring(Time2, 10, 8), time)) " +
+        		 "OR (Open3 LIKE \'%" + weekday + "%\' AND CURTIME() BETWEEN " +
+                 "CONVERT(substring(Time3, 1, 8), time) AND CONVERT(substring(Time3, 10, 8), time));";
         
         try {
-        	Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         	PreparedStatement stat = conn.prepareStatement(query);
         	ResultSet rs = stat.executeQuery();
         	result = new ArrayList<Restaurant>();
@@ -244,7 +244,6 @@ public class RestSelector {
     public ArrayList<String> random(){
     	ArrayList<String> res = new ArrayList<String>();
     	try {
-    		Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         	PreparedStatement stat = conn.prepareStatement("SELECT Name "
         												 + "FROM restaurant "
         												 + "ORDER BY RAND() "
@@ -283,5 +282,15 @@ public class RestSelector {
     	result.set(i, result.get(j));
     	result.set(j, temp);
     }
-
+    
+	public void close(){
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn = null;
+		}
+	}
 }

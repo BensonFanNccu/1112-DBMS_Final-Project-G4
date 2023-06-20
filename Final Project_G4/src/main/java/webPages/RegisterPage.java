@@ -34,10 +34,11 @@ public class RegisterPage extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String repassword = request.getParameter("confirm_password");
-		PrintWriter out = response.getWriter();
 		
-		UserManager db = new UserManager();
-		String res = db.register(account, email, password, repassword);
+		PrintWriter out = response.getWriter();
+		UserManager manager = new UserManager();
+		
+		String res = manager.register(account, email, password, repassword);
 		
 		if(res.equals("註冊成功！")) {
 			HttpSession session = request.getSession(true);
@@ -55,5 +56,6 @@ public class RegisterPage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 		}
+		manager.close();
 	}
 }

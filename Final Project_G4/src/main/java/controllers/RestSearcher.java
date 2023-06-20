@@ -17,6 +17,8 @@ public class RestSearcher {
 	private static final String USER = "root";
 	private static final String PASS = "000000";
 	
+	private Connection conn;
+	
 	public RestSearcher() {
 		mysql_connect();
 	}
@@ -24,7 +26,7 @@ public class RestSearcher {
 	public void mysql_connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Can't find driver");
 			e.printStackTrace();
@@ -35,7 +37,6 @@ public class RestSearcher {
 	
 	public String searchByName(String input) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT Name "
 														 + "FROM `Restaurant` "
 														 + "WHERE Name = ?");
@@ -56,7 +57,6 @@ public class RestSearcher {
 
 	public String getIdByName(String name) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT RestID"
 														 + " FROM Restaurant"
 														 + " WHERE Name=?");
@@ -77,7 +77,6 @@ public class RestSearcher {
 	
 	public Restaurant getRestaurant(String restID) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT * "
 														 + "FROM Restaurant "
 														 + "WHERE RestID=?");
@@ -98,7 +97,6 @@ public class RestSearcher {
 	
 	public String getNameById(String id) {
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT * "
 														 + "FROM Restaurant "
 														 + "WHERE RestID=?");
@@ -119,7 +117,6 @@ public class RestSearcher {
 	public ArrayList<String> getSource(String rid){
 		try {
 			ArrayList<String> result = new ArrayList<String>();
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT Source "
 														 + "FROM menupicture "
 														 + "WHERE RestID = ?");
@@ -140,7 +137,6 @@ public class RestSearcher {
 	public HashMap<String, String> getMenu(String rid){
 		try {
 			HashMap<String, String> menu = new HashMap<String, String>();
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT * "
 														 + "FROM menu "
 														 + "WHERE RestID = ?");
@@ -160,7 +156,6 @@ public class RestSearcher {
 	public HashMap<String, String> getComment(String rid){
 		try {
 			HashMap<String, String> comment = new HashMap<String, String>();
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			PreparedStatement stat = conn.prepareStatement("SELECT * "
 														 + "FROM review "
 														 + "WHERE RestID = ? "
@@ -177,5 +172,15 @@ public class RestSearcher {
 			return null;
 		}
 	}
-
+	
+	public void close(){
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn = null;
+		}
+	}
 }

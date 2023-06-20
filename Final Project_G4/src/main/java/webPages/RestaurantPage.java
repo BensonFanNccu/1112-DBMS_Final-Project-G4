@@ -23,9 +23,9 @@ public class RestaurantPage extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 	 	HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
@@ -38,23 +38,22 @@ public class RestaurantPage extends HttpServlet {
 	    	return;
 	    }
 	    
-	    String lastPage = (String)session.getAttribute("last");
-	    request.setAttribute("last", lastPage);
-		
+	    String lastPage = (String)session.getAttribute("last");		
 		String[] attribute = request.getQueryString().split("&");
-		request.setAttribute("user", attribute[0]);
-		request.setAttribute("RestID", attribute[1]);
-		
+
 		RestSearcher searcher = new RestSearcher();
 		Restaurant r = searcher.getRestaurant(attribute[1].split("=")[1]);
+		searcher.close();
 		
+		request.setAttribute("last", lastPage);
+		request.setAttribute("user", attribute[0]);
+		request.setAttribute("RestID", attribute[1]);
 		request.setAttribute("Name", r.getName());
 		request.setAttribute("Address", r.getAddress());
 		request.setAttribute("Phone", r.getPhone());
 		request.setAttribute("BusHR", r.getBusinessHour());
 		request.setAttribute("Closed", r.getClosed());
 		request.setAttribute("Vegan", r.getVegan());
-		
 		request.getRequestDispatcher("restaurant.jsp").forward(request, response);
 	}
 	

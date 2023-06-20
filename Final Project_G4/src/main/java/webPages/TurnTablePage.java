@@ -36,13 +36,14 @@ public class TurnTablePage extends HttpServlet {
 	    	return;
 	    }
 		
-		request.setAttribute("user", request.getQueryString());
-		
 		RestSelector selector = new RestSelector();
 		ArrayList<String> res = selector.random();
 		for(int i = 0; i < res.size(); i++) {
 			request.setAttribute("Rest" + Integer.toString(i+1), res.get(i));
 		}
+		
+		selector.close();
+		request.setAttribute("user", request.getQueryString());
 		request.getRequestDispatcher("turnTable.jsp").forward(request, response);
 	}
 	

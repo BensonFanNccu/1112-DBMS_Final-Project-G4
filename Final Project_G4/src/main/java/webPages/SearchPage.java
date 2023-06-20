@@ -34,7 +34,7 @@ public class SearchPage extends HttpServlet {
 	    	writer.println("</script>");
 	    	return;
 	    }
-		
+	    
 		request.setAttribute("user", request.getQueryString());
 		request.getRequestDispatcher("search.jsp").forward(request, response);
 	}
@@ -73,5 +73,6 @@ public class SearchPage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 		}
+		searcher.close();
 	}
 }

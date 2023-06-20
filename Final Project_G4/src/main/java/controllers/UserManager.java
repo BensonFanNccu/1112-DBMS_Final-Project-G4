@@ -66,7 +66,6 @@ public class UserManager {
 
 	public String register(String account, String email, String password, String repassword) {
 		try {
-			// Check userName duplication
 			PreparedStatement stat = conn.prepareStatement("SELECT * "
 														 + "FROM `user` WHERE Account = ?");
 			stat.setString(1, account);
@@ -75,7 +74,6 @@ public class UserManager {
 				return "此名稱已被使用，請使用別的名稱";
 			}
 
-			// Check email duplication
 			stat = conn.prepareStatement("SELECT * "
 									   + "FROM `user` WHERE Email = ?");
 			stat.setString(1, email);
@@ -88,14 +86,12 @@ public class UserManager {
 				return "您輸入的密碼前後不一致";
 			}
 
-			// Insert values
 			stat = conn.prepareStatement("INSERT INTO user(Account, Email, Password)"
 									   + "VALUES (?, ?, ?);");
 			stat.setString(1, account);
 			stat.setString(2, email);
 			stat.setString(3, password);
 			stat.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return "發生未知錯誤";
@@ -114,11 +110,11 @@ public class UserManager {
         prop.put("mail.smtp.starttls.enable", "true");
         
         Session session = Session.getInstance(prop,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(account, password);
-                    }
+        	new javax.mail.Authenticator() {
+            	protected PasswordAuthentication getPasswordAuthentication() {
+            		return new PasswordAuthentication(account, password);
                 }
+            }
         );
         
         try {
@@ -309,6 +305,7 @@ public class UserManager {
 			stat.setString(1, email);
 			stat.setString(2, uid);
 			stat.executeUpdate();
+			stat.close();
 			return "修改成功!";
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -324,10 +321,22 @@ public class UserManager {
 			stat.setString(1, password);
 			stat.setString(2, uid);
 			stat.executeUpdate();
+			stat.close();
 			return "修改成功!";
 		}catch(Exception e) {
 			e.printStackTrace();
 			return "修改失敗";
+		}
+	}
+	
+	public void close(){
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn = null;
 		}
 	}
 }

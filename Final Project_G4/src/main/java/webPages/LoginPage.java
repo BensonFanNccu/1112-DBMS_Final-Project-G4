@@ -22,6 +22,7 @@ public class LoginPage extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		request.getRequestDispatcher("login.jsp").forward(request, response);				
 	}
 	
@@ -50,6 +51,7 @@ public class LoginPage extends HttpServlet {
 			out.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
 			out.println("</script>");
 			out.flush();
-		}				
+		}
+		manager.close();
 	}
 }

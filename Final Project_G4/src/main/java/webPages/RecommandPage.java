@@ -21,9 +21,9 @@ public class RecommandPage extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 	 	HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
@@ -37,7 +37,6 @@ public class RecommandPage extends HttpServlet {
 	    }
 		
 		String[] attribute = request.getQueryString().split("&");
-		request.setAttribute("user", attribute[0]);
 		
 		if(attribute[1].equals("Result=none")) {
 			for(int i = 1; i <= 3; i++) {
@@ -50,7 +49,6 @@ public class RecommandPage extends HttpServlet {
 			
 			request.setAttribute("Rest1", searcher.getNameById(attrRest[0].split("=")[1]));
 			request.setAttribute("RestID1", attrRest[0].split("=")[1]);
-			
 			if(attrRest.length < 3) {
 				if(attrRest.length == 1) {
 					for(int i = 2; i <= 3; i++) {
@@ -71,7 +69,9 @@ public class RecommandPage extends HttpServlet {
 					request.setAttribute("RestID" + Integer.toString(i+1), attrRest[i]);
 				}
 			}
+			searcher.close();
 		}
+		request.setAttribute("user", attribute[0]);
 		request.getRequestDispatcher("recommand.jsp").forward(request, response);
 	}
 	

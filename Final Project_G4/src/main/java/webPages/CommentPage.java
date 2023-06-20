@@ -2,6 +2,7 @@ package webPages;
 
 import controllers.RestSearcher;
 import controllers.UserManager;
+
 import entities.Restaurant;
 
 import java.io.IOException;
@@ -23,8 +24,8 @@ public class CommentPage extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		
 	 	HttpSession session = request.getSession(true);
@@ -39,19 +40,20 @@ public class CommentPage extends HttpServlet {
 	    }
 		
 		String[] attr = request.getQueryString().split("&");
-		
-		request.setAttribute("user", attr[0]);
-		request.setAttribute("RestID", attr[1]);
 		RestSearcher searcher = new RestSearcher();
 		Restaurant r = searcher.getRestaurant(attr[1].split("=")[1]);
+		
+		searcher.close();
+		request.setAttribute("user", attr[0]);
+		request.setAttribute("RestID", attr[1]);
 		request.setAttribute("Name", r.getName());
 		request.getRequestDispatcher("comment.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 		UserManager manager = new UserManager();
 		String[] attr = request.getQueryString().split("&");
@@ -88,5 +90,6 @@ public class CommentPage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 		}
+		manager.close();
 	}
 }

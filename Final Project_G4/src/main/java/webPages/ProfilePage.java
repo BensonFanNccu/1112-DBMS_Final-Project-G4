@@ -1,6 +1,7 @@
 package webPages;
 
 import controllers.UserManager;
+
 import entities.User;
 
 import java.io.IOException;
@@ -24,7 +25,6 @@ public class ProfilePage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setAttribute("user", request.getQueryString());
 		
 		HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
@@ -44,7 +44,8 @@ public class ProfilePage extends HttpServlet {
 	    	request.setAttribute("password", u.getPassword());
 	    	request.setAttribute("email", u.getEmail());
 	    }
-	    
+	    manager.close();
+	    request.setAttribute("user", request.getQueryString());
 	    request.getRequestDispatcher("profile.jsp").forward(request, response);
 	}
 	

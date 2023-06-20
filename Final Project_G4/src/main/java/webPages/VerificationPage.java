@@ -2,8 +2,6 @@ package webPages;
 
 import controllers.UserManager;
 
-import java.util.Random;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.Random;
+
 @WebServlet("/VerificationPage")
 public class VerificationPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,8 +23,8 @@ public class VerificationPage extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		
 	 	HttpSession session = request.getSession(true);
@@ -34,7 +34,7 @@ public class VerificationPage extends HttpServlet {
 	    String code = String.format("%06d", new Random().nextInt(1000000));
 	    
 	    manager.sendVerification(val, code);
-	    
+	    manager.close();
 	    session.setAttribute("verificationCode", code);
 		request.getRequestDispatcher("verification.jsp").forward(request, response);
 	}
@@ -59,14 +59,12 @@ public class VerificationPage extends HttpServlet {
 			out.println("alert('驗證完成，您的帳號已啟用');");
 			out.println("window.location.replace(\"/Final_Project_G4/LoginPage\");");
 			out.println("</script>");
+			manager.close();
 		}else {
 			out.println("<script>");
 			out.println("alert('驗證碼錯誤，新驗證碼已寄出，請重新驗證');");
 			out.println("window.location.replace(\"/Final_Project_G4/VerificationPage\");");
 			out.println("</script>");
 		}
-		
-		
-		
 	}
 }

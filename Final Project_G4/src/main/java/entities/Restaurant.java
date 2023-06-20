@@ -12,6 +12,7 @@ public class Restaurant {
     private String diningTime;
     private String type;
     private String distance;
+    
     private double score;
 
     public Restaurant(String id, String name, String address, String phone, String businessHour, String closed, String vegan) {

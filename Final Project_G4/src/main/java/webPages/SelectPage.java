@@ -47,6 +47,7 @@ public class SelectPage extends HttpServlet {
 		
 		RestSelector s = new RestSelector();
 		s.fetchRequest(request);
+		
 		ArrayList<String> result = s.sortResult();
 		String attr = "";
 		
@@ -60,6 +61,7 @@ public class SelectPage extends HttpServlet {
 				attr += result.get(i);
 			}			
 		}
+		
 		PrintWriter out = response.getWriter();
 		String url = String.format("/Final_Project_G4/RecommandPage?" + request.getQueryString() + "&Result=" + attr);
 		
@@ -71,5 +73,6 @@ public class SelectPage extends HttpServlet {
 		out.println("window.location.replace(\"" + url +"\");");
 		out.println("</script>");
 		out.flush();
+		s.close();
 	}
 }

@@ -6,13 +6,13 @@ import controllers.RestSearcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
 
 @WebServlet("/DeleteFavoritePage")
 public class DeleteFavoritePage extends HttpServlet {
@@ -23,12 +23,9 @@ public class DeleteFavoritePage extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
-		
-		request.setAttribute("user", request.getQueryString());
-
 		
 		UserManager manager = new UserManager();
 		ArrayList<String> favorite = manager.getFavorite(request.getQueryString().split("=")[1]);
@@ -52,25 +49,26 @@ public class DeleteFavoritePage extends HttpServlet {
 				} else {
 					request.setAttribute("Rest2", favorite.get(1));
 					request.setAttribute("Rest3", favorite.get(2));
-					
 				}
 			}
 		}
+		manager.close();
+		request.setAttribute("user", request.getQueryString());
 		request.getRequestDispatcher("deleteFavorite.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
 		
 		String uid = request.getQueryString().split("=")[1];
 		String rid = "";
 		String res = "none";
+		
 		RestSearcher searcher = new RestSearcher();
 		UserManager manager = new UserManager();
 		ArrayList<String> favorite = manager.getFavorite(uid);
-
 		
 		if(favorite.size() < 2 && (request.getParameter("delete2") != null || request.getParameter("delete3") != null)) {
 			PrintWriter out = response.getWriter();
@@ -124,5 +122,7 @@ public class DeleteFavoritePage extends HttpServlet {
 			out.println("</script>");
 			out.flush();
 		}
+		manager.close();
+		searcher.close();
 	}
 }

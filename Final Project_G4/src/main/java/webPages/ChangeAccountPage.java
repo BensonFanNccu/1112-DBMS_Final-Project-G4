@@ -23,8 +23,7 @@ public class ChangeAccountPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		request.setAttribute("user", request.getQueryString());
-		
+				
 		HttpSession session = request.getSession(true);
 	    String val = (String)session.getAttribute("pass");
 	    if(val == null){
@@ -36,6 +35,7 @@ public class ChangeAccountPage extends HttpServlet {
 	    	return;
 	    }
 	    
+	    request.setAttribute("user", request.getQueryString());
 	    request.getRequestDispatcher("changeAccount.jsp").forward(request, response);
 	}
 	
@@ -61,6 +61,7 @@ public class ChangeAccountPage extends HttpServlet {
 	    	out.println("alert('" + res + "')");
 	    	out.println("window.location.replace(\"/Final_Project_G4/ProfilePage?" + request.getQueryString() +"\");");
 	    	out.println("</script>");
+	    	manager.close();
 	    }
 	}
 }
