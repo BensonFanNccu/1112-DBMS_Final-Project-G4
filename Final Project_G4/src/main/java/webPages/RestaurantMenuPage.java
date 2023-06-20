@@ -44,7 +44,10 @@ public class RestaurantMenuPage extends HttpServlet {
 	    RestSearcher searcher = new RestSearcher();
 	    HashMap<String, String> menu = searcher.getMenu(attribute[1].split("=")[1]);
 	    
-	    String menuTable = String.format("<table>\n<tr>\n<th>品名</th>\n<th>價格</th>\n</tr>\n");
+	    String menuTable = String.format("<table>\n<tr style=\"visibility: hidden;\">\r\n"
+	    		+ "      	<td width=\"280px\">\r\n"
+	    		+ "      	<td width=\"120px\">\r\n"
+	    		+ "      </tr><tr>\n<th>品名</th>\n<th>價格</th>\n</tr>\n");
 	    
 	    if(menu.isEmpty()) {
 	    	menuTable += String.format("<tr>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", "很抱歉，找不到這家餐廳的餐點詳細資訊", "");

@@ -40,7 +40,10 @@ public class RestaurantCommentPage extends HttpServlet {
 	    
 	    RestSearcher searcher = new RestSearcher();
 	    String[] attribute = request.getQueryString().split("&");		
-		String commentTable = String.format("<table>\n<tr>\n<th>評論</th>\n<th>星星數</th>\n</tr>\n");
+		String commentTable = String.format("<table>\n<tr style=\"visibility: hidden;\">\r\n"
+				+ "      	<td width=\"200px\">\r\n"
+				+ "      	<td width=\"200px\">\r\n"
+				+ "      </tr><tr>\n<th>評論</th>\n<th>星星數</th>\n</tr>\n");
 		HashMap<String, String> comment = searcher.getComment(attribute[1].split("=")[1]);
 		
 	    if(comment.isEmpty()) {
@@ -53,7 +56,7 @@ public class RestaurantCommentPage extends HttpServlet {
 	    searcher.close();
 		request.setAttribute("user", attribute[0]);
 		request.setAttribute("RestID", attribute[1]);
-		request.setAttribute("Rest", searcher.getNameById(attribute[1]));
+		request.setAttribute("Rest", searcher.getNameById(attribute[1].split("=")[1]));
 		request.setAttribute("comment", commentTable);
 	    request.getRequestDispatcher("restaurantComment.jsp").forward(request, response);
 	}

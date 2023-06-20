@@ -59,9 +59,9 @@
             		
             		<form action='/Final_Project_G4/MyFavoritePage?${user}&${RestID}' method='post'>
             		<input type="submit" value="加入我的最愛" name = "${user}" class="submit">
+            		<input type="button" value="點我查看餐廳評價" class="submit" onclick="toRestaurantComment()">
             		</form>
             		<input type="button" value="返回上一頁" class="submit" onclick="toLastPage()">
-            		<input type="button" value="點我查看餐廳評價" class="submit" onclick="toRestaurantComment()">
             		<input type="button" value="返回至功能選單" class="submit" onclick="toFunctionList()">
         		</div>
     		</div>
