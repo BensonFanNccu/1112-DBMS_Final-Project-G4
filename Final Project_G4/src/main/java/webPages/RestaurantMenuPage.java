@@ -54,6 +54,14 @@ public class RestaurantMenuPage extends HttpServlet {
 	    ArrayList<String> sources = searcher.getSource(attribute[1].split("=")[1]);
 	    String sourceHtml = "";
 	    
+	    if(sources.isEmpty()) {
+	    	sourceHtml += String.format("<img src=\"restaurants/" + "Rest0.jpg" + "\" style=\"max-width: 370px; max-height: 300px;\">");
+	    }else {
+	    	for(String source : sources) {
+		    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" style=\"max-width: 370px; max-height: 300px;\">");
+		    }
+	    }
+	    
 	    for(String source : sources) {
 	    	sourceHtml += String.format("<img src=\"restaurants/" + source + "\" style=\"max-width: 370px; max-height: 300px;\">");
 	    }

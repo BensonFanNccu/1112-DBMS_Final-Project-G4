@@ -16,18 +16,21 @@
         <div class="personal info"> 
           <h3>個人資料頁面</h3>
           <br><b><label>帳號：${account}</label></b>
-          <h5><a href="javascript:void(0)" onclick = "toChangeAccount()">更改帳號名稱</a></h5>
+          <br><input type = "button" value = "更改帳號名稱" class = "submit" onclick = "toChangeAccount()">
+          <br>
           
             <!-- 這邊貌似要和後端結合，可以顯示＋更改使用者帳號 -->
           <br><b><label>電子信箱：${email}</label></b>
-          <h5><a href="javascript:void(0)" onclick = "toChangeEmail()">更改電子信箱</a></h5>
+          <br><input type = "button" value = "更改電子信箱" class = "submit" onclick = "toChangeEmail()">
+          <br>
           
             <!-- 這邊貌似要和後端結合，可以顯示＋更改使用者用戶名 -->
           <br><b><label>密碼：${password}</label></b>
-          <h5><a href="javascript:void(0)" onclick = "toChangePassword()">更改密碼</a></h5>
+          <br><input type = "button" value = "更改密碼" class = "submit" onclick = "toChangePassword()">
+          <br>
           
             <!-- 這邊貌似要和後端結合，可以顯示＋更改使用者email -->
-          <a href="javascript:void(0)" onclick = "toFunctionList()">
+          <br><a href="javascript:void(0)" onclick = "toFunctionList()">
           <input type="button" value="返回至主選單" class="submit"  style="position: relative;" onclick="">
           </a>
         </div>  

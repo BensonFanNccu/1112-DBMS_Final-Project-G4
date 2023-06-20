@@ -18,7 +18,7 @@
 		
 		<div id="container1">
 			<div class="signup">
-				<h3 style="position: relative; left: 77px">驗證你的email</h3>
+				<h3>驗證你的email</h3>
 			
 				<form action='/Final_Project_G4/VerificationPage' method='post'>
 					<input type="text" id="account" name="verification" style="position: relative; left: 77px" placeholder="驗證碼" required>

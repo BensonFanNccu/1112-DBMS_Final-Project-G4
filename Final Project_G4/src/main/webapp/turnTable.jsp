@@ -116,22 +116,76 @@
 						<div class="number" style="--i:7;--clr:#d63e92;"><span>${Rest7}</span></div>
 						<div class="number" style="--i:8;--clr:#ff7f50;"><span>${Rest8}</span></div>
 					</div>
-					<h5 style="position: relative;top:210px;" ><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>                        
+
+					<h5 style="position: relative;top:220px;" ><a href="javascript:void(0)" onclick = "toFunctionList()">返回主選單</a></h5>                        
 				</div>
 			</div>
 	</body>
 	<script>
-		let wheel = document.querySelector('.wheel');
-		let spinBtn = document.querySelector('.spinBtn');
-		let value = Math.ceil(Math.random() * 3600);
+    let wheel = document.querySelector('.wheel');
+    let spinBtn = document.querySelector('.spinBtn');
+    let isSpinning = false; // 增加一個變數來追蹤轉盤是否正在旋轉
+    let value = Math.ceil(Math.random() * 3600);
+    var res = 0;
+    var rest1 = '${Rest1}';
+    var rest2 = '${Rest8}';
+    var rest3 = '${Rest7}';
+    var rest4 = '${Rest6}';
+    var rest5 = '${Rest5}';
+    var rest6 = '${Rest4}';
+    var rest7 = '${Rest3}';
+    var rest8 = '${Rest2}';
+    
+    spinBtn.onclick = function() {
+    	
+        if (!isSpinning) {
+            isSpinning = true; // 開始旋轉
+            wheel.style.transform = "rotate(" + value + "deg)";
+            res = value % 360;
+            if(res <= 337.5){
+            	res += 22.5;
+            }else{
+            	res = res - 360 + 22.5;
+            }
+            value += Math.ceil(Math.random() * 3600);
+            setTimeout(endSpin, 3000); // 3秒後停止轉動並觸發警示
+        }
+    };
+    function endSpin() {
+            isSpinning = false; // 停止旋轉
+            endalert(); // 呼叫警示函式
+        }
+    
+        function endalert() {
+            // 在此處根據需要的邏輯來判斷結果並警示
+            if(res >= 0 && res < 45){
+            	alert("您轉到 " + rest1);
+            }
+            if(res >= 45 && res < 90){
+            	alert("您轉到 " + rest2);
+            }
+            if(res >= 90 && res < 135){
+            	alert("您轉到 " + rest3);
+            }
+            if(res >= 135 && res < 180){
+            	alert("您轉到 " + rest4);
+            }
+            if(res >= 180 && res < 225){
+            	alert("您轉到 " + rest5);
+            }
+            if(res >= 225 && res < 270){
+            	alert("您轉到 " + rest6);
+            }
+            if(res >= 270 && res < 315){
+            	alert("您轉到 " + rest7);
+            }
+            if(res >= 315 && res < 360){
+            	alert("您轉到 " + rest8);
+            }     
+        }
 
-		spinBtn.onclick = function(){
-			wheel.style.transform = "rotate(" + value + "deg)"
-			value += Math.ceil(Math.random() * 3600);
-		}
-	
-		function toFunctionList(){
-			window.location.replace("/Final_Project_G4/FunctionListPage?${user}");
-		}
+    function toFunctionList(){
+      window.location.replace("/Final_Project_G4/FunctionListPage?${user}");
+    }
 	</script>
 </html>

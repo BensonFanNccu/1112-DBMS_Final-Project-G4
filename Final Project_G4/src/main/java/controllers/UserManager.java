@@ -20,9 +20,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class UserManager {
-	private static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-	private static final String USER = "benson";
-	private static final String PASS = "123456789";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	private static final String USER = "root";
+	private static final String PASS = "000000";
 	
 	private Connection conn;
 

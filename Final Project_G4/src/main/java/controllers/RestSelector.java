@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 public class RestSelector {
-    static final String DB_URL = "jdbc:mysql://140.119.203.60:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    static final String USER = "benson";
-    static final String PASS = "123456789";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/db_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	private static final String USER = "root";
+	private static final String PASS = "000000";
 	
 	private ArrayList<String> budget;
 	private ArrayList<String> time;

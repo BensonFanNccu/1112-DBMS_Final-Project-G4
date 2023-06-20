@@ -39,7 +39,7 @@ public class RegisterPage extends HttpServlet {
 		UserManager db = new UserManager();
 		String res = db.register(account, email, password, repassword);
 		
-		if(res.equals("註冊成功")) {
+		if(res.equals("註冊成功！")) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("email", email);
 			
